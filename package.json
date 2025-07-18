@@ -1,0 +1,56 @@
+{
+  "name": "ishmam.dev",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "author": {
+    "name": "IshmamR",
+    "email": "ishmam785@gmail.com",
+    "url": "https://github.com/IshmamR"
+  },
+  "contributors": [
+    {
+      "name": "IshmamR",
+      "email": "ishmam785@gmail.com",
+      "url": "https://github.com/IshmamR"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IshmamR/ishmam.dev.git"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "vite start",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-router": "^1.128.3",
+    "@tanstack/react-start": "^1.128.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.525.0",
+    "postcss": "^8.5.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "@tanstack/react-router-devtools": "^1.128.3",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "tw-animate-css": "^1.3.5",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}

@@ -1,0 +1,42 @@
+# Bun dependencies
+node_modules/
+bun.lockb
+
+# Build and dev output
+.vite/
+dist/
+build/
+.tanstack/
+.nitro/
+.output/
+
+# Logs
+*.log
+bun-debug.log*
+npm-debug.log*
+
+# Editor configs
+.vscode/
+.idea/
+*.suo
+*.njsproj
+*.sln
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env*
+!.env.example
+
+# Testing
+coverage/
+*.lcov
+__snapshots__/
+test-results/
+playwright-report/
+
+# Cypress
+cypress/screenshots/
+cypress/videos/
