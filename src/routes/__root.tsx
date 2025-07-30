@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
+import { Footer } from "../components/sections/Footer";
+import { Header } from "../components/sections/Header";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -21,7 +23,7 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Ishmam",
+        title: "Ishmam - Full-stack & Beyond",
       },
     ],
     links: [
@@ -42,16 +44,44 @@ function RootComponent() {
   );
 }
 
+function chooseThemeOnLoad() {
+  let theme = localStorage.getItem("theme");
+  if (!theme) {
+    theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+  const palette = localStorage.getItem("palette") || "monokai";
+  document.documentElement.classList.remove("light", "dark");
+  document.documentElement.classList.add(theme);
+  document.documentElement.classList.remove(
+    "palette-classic",
+    "palette-neon",
+    "palette-ocean",
+    "palette-forest",
+    "palette-sunset",
+    "palette-monokai"
+  );
+  document.documentElement.classList.add(`palette-${palette}`);
+}
+
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html>
+    <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(${chooseThemeOnLoad.toString()})()`,
+          }}
+        />
         <HeadContent />
       </head>
+
       <body>
-        <div className="min-h-dvh">
-          <main className="flex-1 flex flex-col">{children}</main>
-        </div>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+
         <Scripts />
 
         <TanStackRouterDevtools position="bottom-left" />

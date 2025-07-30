@@ -23,7 +23,7 @@ function RouteComponent() {
   const [themeIdx, setThemeIdx] = useState(0);
   const [modeIdx, setModeIdx] = useState(0);
 
-  const themeClass = `theme-${themes[themeIdx].key}`;
+  const themeClass = `palette-${themes[themeIdx].key}`;
   const modeClass = modes[modeIdx].key;
 
   // Apply theme and mode to html element
@@ -71,7 +71,7 @@ function RouteComponent() {
           <div className="p-4 rounded bg-muted text-muted-foreground">
             Muted
           </div>
-          <div className="p-4 rounded bg-destructive text-destructive">
+          <div className="p-4 rounded bg-destructive text-destructive-foreground">
             Destructive
           </div>
           <div className="p-4 rounded bg-card text-card-foreground">Card</div>

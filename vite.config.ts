@@ -9,7 +9,22 @@ export default defineConfig({
   },
   plugins: [
     tsConfigPaths(),
-    tanstackStart({ customViteReactPlugin: true, target: "bun" }),
+    tanstackStart({
+      customViteReactPlugin: true,
+      target: "bun",
+      pages: [
+        { path: "/", prerender: { enabled: true, outputPath: "/index.html" } },
+      ],
+    }),
     viteReact(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          start: ["@tanstack/react-start"],
+        },
+      },
+    },
+  },
 });

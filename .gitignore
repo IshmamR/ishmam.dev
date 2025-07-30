@@ -40,3 +40,5 @@ playwright-report/
 # Cypress
 cypress/screenshots/
 cypress/videos/
+
+public/assets/files/*.woff2
