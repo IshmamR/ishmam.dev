@@ -21,6 +21,10 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       { title: "Ishmam - Full-stack & Beyond" },
+      {
+        name: "description",
+        content: "Minimal portfolio website of Ishmam Rahman.",
+      },
     ],
     links: [{ rel: "stylesheet", href: globalCss }],
   }),
@@ -36,9 +40,6 @@ function RootComponent() {
 }
 
 function chooseThemeOnLoad() {
-  const themeStore = localStorage.getItem("theme-store");
-  if (!themeStore) return;
-
   const palettesClasses = [
     "palette-classic",
     "palette-neon",
@@ -48,15 +49,27 @@ function chooseThemeOnLoad() {
     "palette-monokai",
   ];
 
+  function getSystemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  const themeStore = localStorage.getItem("theme-store");
+  if (!themeStore) {
+    const theme = getSystemTheme();
+    document.documentElement.classList.add(theme);
+    document.documentElement.classList.add("palette-classic");
+    return;
+  }
+
   try {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.remove(...palettesClasses);
 
     const { state } = JSON.parse(themeStore);
     if (!state) {
-      const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      const theme = getSystemTheme();
       document.documentElement.classList.add(theme);
       document.documentElement.classList.add("palette-classic");
       return;
@@ -64,14 +77,18 @@ function chooseThemeOnLoad() {
 
     let theme = state.theme;
     if (!theme) {
-      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      theme = getSystemTheme();
     }
 
     document.documentElement.classList.add(theme);
-    document.documentElement.classList.add(`palette-${state.palette}`);
-  } catch (error) {}
+    document.documentElement.classList.add(
+      `palette-${state.palette ?? "classic"}`
+    );
+  } catch (error) {
+    const theme = getSystemTheme();
+    document.documentElement.classList.add(theme);
+    document.documentElement.classList.add("palette-classic");
+  }
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {

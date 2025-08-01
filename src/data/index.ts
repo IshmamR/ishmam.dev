@@ -1,4 +1,4 @@
-import { CodeXmlIcon } from "lucide-react";
+import { CodeXmlIcon, GlobeIcon, GraduationCapIcon } from "lucide-react";
 import { SocialLink, TechStack, TExperience, TProject } from "../types";
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -226,7 +226,7 @@ export const EXPERIENCES: TExperience[] = [
         id: "software-developer",
         title: "Software Developer",
         employmentPeriod: {
-          start: "06.2022",
+          start: "06.2021",
           end: "06.2024",
         },
         employmentType: "Part time",
@@ -244,13 +244,29 @@ export const EXPERIENCES: TExperience[] = [
   {
     slug: "electrode",
     organization: "Freelance",
-    positions: [],
+    positions: [
+      {
+        id: "web-dev",
+        title: "Web Developer",
+        employmentPeriod: { start: "06.2020", end: "05.2021" },
+        employmentType: "Part time",
+        icon: GlobeIcon,
+      },
+    ],
     isCurrent: false,
   },
   {
     slug: "waste-of-time",
     organization: "Education",
-    positions: [],
+    positions: [
+      {
+        id: "ewu",
+        title: "BSc. in Computer Science & Engineering",
+        employmentPeriod: { start: "01.2020", end: "04.2024" },
+        employmentType: "East West University",
+        icon: GraduationCapIcon,
+      },
+    ],
     isCurrent: false,
   },
 ];
@@ -262,7 +278,16 @@ export const PROJECTS: TProject[] = [
     link: "https://ishmam.dev",
     period: { start: "07.2025" },
     skills: [],
-    isExpanded: true,
+    isExpanded: false,
+    description: "",
+  },
+  {
+    id: "staging.headless.ltd",
+    title: "Headless Technologies LTD.",
+    link: "https://staging.headless.ltd",
+    period: { start: "12.2024", end: "04.2025" },
+    skills: [],
+    isExpanded: false,
     description: "",
   },
 ];
