@@ -1,7 +1,7 @@
 import { CodeXmlIcon, GlobeIcon, GraduationCapIcon } from "lucide-react";
-import { SocialLink, TechStack, TExperience, TProject } from "../types";
+import type { TExperience, TechStack, TProject, TSocialLink } from "../types";
 
-export const SOCIAL_LINKS: SocialLink[] = [
+export const SOCIAL_LINKS: TSocialLink[] = [
   {
     icon: "https://assets.chanhdai.com/images/link-icons/github.webp",
     title: "GitHub",

@@ -6,19 +6,29 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": false
+		"includes": [
+			"src/**/*.ts",
+			"src/**/*.tsx",
+			"!src/**/*.gen.ts"
+		]
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "space"
 	},
 	"linter": {
 		"enabled": true,
 		"domains": {
-			"react": "recommended"
+			"react": "all"
 		},
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"correctness": {
+				"useExhaustiveDependencies": "error"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			}
 		}
 	},
 	"javascript": {

@@ -1,6 +1,6 @@
-import { LucideProps } from "lucide-react";
+import type { LucideProps } from "lucide-react";
 
-export type SocialLink = {
+export type TSocialLink = {
   icon: string;
   title: string;
   description?: string;

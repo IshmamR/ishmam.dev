@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import {
   useCallback,
   useEffect,
@@ -7,6 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { cn } from "@/lib/utils";
 
 // a 4x8 grid
 const INITIALS_GRID = [
@@ -16,7 +16,7 @@ const INITIALS_GRID = [
   [1, 1, 1, 0, 1, 0, 0, 1],
 ] as const;
 
-export default function BlinkingGrid({}) {
+export default function BlinkingGrid() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [rows, setRows] = useState(0);

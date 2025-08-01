@@ -1,15 +1,5 @@
 "use client";
 
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from "@/components/ui/command";
-import { cn, copyText } from "@/lib/utils";
 import { useRouter } from "@tanstack/react-router";
 import { useCommandState } from "cmdk";
 import type { LucideProps } from "lucide-react";
@@ -30,8 +20,18 @@ import {
 } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { cn, copyText } from "@/lib/utils";
 import { SOCIAL_LINKS } from "../data";
-import { TTheme } from "../hooks/useTheme";
+import type { TTheme } from "../stores/theme.store";
 import { useThemeStore } from "../stores/theme.store";
 import { Logo } from "./icons/Logo";
 import { Button } from "./ui/button";
@@ -114,7 +114,7 @@ const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
   openInNewTab: true,
 }));
 
-export function CommandMenu({}: { posts?: any[] }) {
+export function CommandMenu() {
   const router = useRouter();
 
   const setTheme = useThemeStore((s) => s.setTheme);
@@ -167,10 +167,13 @@ export function CommandMenu({}: { posts?: any[] }) {
     toast.success(message);
   }, []);
 
-  const handleThemeChange = useCallback((theme: TTheme) => {
-    setOpen(false);
-    setTheme(theme);
-  }, []);
+  const handleThemeChange = useCallback(
+    (theme: TTheme) => {
+      setOpen(false);
+      setTheme(theme);
+    },
+    [setTheme]
+  );
 
   // const { blogLinks, componentLinks } = useMemo(
   //   () => ({
@@ -200,6 +203,7 @@ export function CommandMenu({}: { posts?: any[] }) {
           viewBox="0 0 16 16"
           aria-hidden
         >
+          <title>Command Icon</title>
           <path
             d="M10.278 11.514a5.824 5.824 0 1 1 1.235-1.235l3.209 3.208A.875.875 0 0 1 14.111 15a.875.875 0 0 1-.624-.278l-3.209-3.208Zm.623-4.69a4.077 4.077 0 1 1-8.154 0 4.077 4.077 0 0 1 8.154 0Z"
             fill="currentColor"
@@ -457,7 +461,8 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   );
 }
 
-function postToCommandLinkItem(post: any): CommandLinkItem {
+// biome-ignore lint/suspicious/noExplicitAny: Post type from external API, needs flexible typing
+export function postToCommandLinkItem(post: any): CommandLinkItem {
   const isComponent = post.metadata?.category === "components";
 
   return {

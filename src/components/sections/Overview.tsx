@@ -3,7 +3,7 @@ import {
   CodeXmlIcon,
   GlobeIcon,
   LightbulbIcon,
-  LucideProps,
+  type LucideProps,
   MailIcon,
   MapPinIcon,
   PhoneIcon,

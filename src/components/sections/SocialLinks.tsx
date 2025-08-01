@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
 import { ArrowUpRightIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { SOCIAL_LINKS } from "../../data";
-import { SocialLink } from "../../types";
+import type { TSocialLink } from "../../types";
 
-function SocialLinkItem(props: SocialLink) {
+function SocialLinkItem(props: TSocialLink) {
   return (
     <a
       className={cn(
@@ -56,8 +56,8 @@ export function SocialLinksSection() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {SOCIAL_LINKS.map((link, index) => {
-              return <SocialLinkItem key={index} {...link} />;
+            {SOCIAL_LINKS.map((link) => {
+              return <SocialLinkItem key={link.href} {...link} />;
             })}
           </div>
         </div>

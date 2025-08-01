@@ -38,12 +38,14 @@ function RouteComponent() {
     <div className="min-h-dvh flex flex-col items-center justify-center gap-8">
       <div className="flex gap-4">
         <button
+          type="button"
           className="px-4 py-2 rounded bg-primary text-primary-foreground border border-border"
           onClick={() => setThemeIdx((themeIdx + 1) % themes.length)}
         >
           Switch Theme ({themes[themeIdx].name})
         </button>
         <button
+          type="button"
           className="px-4 py-2 rounded bg-secondary text-secondary-foreground border border-border"
           onClick={() => setModeIdx((modeIdx + 1) % modes.length)}
         >

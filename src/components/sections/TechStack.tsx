@@ -1,6 +1,6 @@
 import { TECH_STACK } from "../../data";
-import { TTheme, useThemeStore } from "../../stores/theme.store";
-import { TechStack } from "../../types";
+import { type TTheme, useThemeStore } from "../../stores/theme.store";
+import type { TechStack } from "../../types";
 import { SimpleTooltip } from "../ui/tooltip";
 
 function TechImage(props: TechStack & { currentTheme: TTheme }) {

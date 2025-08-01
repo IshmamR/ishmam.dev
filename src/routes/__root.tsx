@@ -1,6 +1,5 @@
 /// <reference types="vite/client" />
 
-import globalCss from "@/styles/global.css?url";
 import {
   createRootRoute,
   HeadContent,
@@ -9,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
+import globalCss from "@/styles/global.css?url";
 import { Footer } from "../components/sections/Footer";
 import { Header } from "../components/sections/Header";
 
@@ -84,7 +84,7 @@ function chooseThemeOnLoad() {
     document.documentElement.classList.add(
       `palette-${state.palette ?? "classic"}`
     );
-  } catch (error) {
+  } catch (_e) {
     const theme = getSystemTheme();
     document.documentElement.classList.add(theme);
     document.documentElement.classList.add("palette-classic");

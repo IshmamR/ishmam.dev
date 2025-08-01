@@ -1,4 +1,4 @@
-import { TPalette, TTheme } from "../hooks/useTheme";
+import type { TPalette, TTheme } from "../stores/theme.store";
 
 export const PALETTE_SWATCH: Record<
   TPalette,

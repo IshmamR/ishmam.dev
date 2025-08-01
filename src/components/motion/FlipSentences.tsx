@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function FlipSentences({
   className,
@@ -15,11 +15,11 @@ export function FlipSentences({
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startAnimation = () => {
+  const startAnimation = useCallback(() => {
     intervalRef.current = setInterval(() => {
       setCurrentSentence((prev) => (prev + 1) % sentences.length);
     }, 3500);
-  };
+  }, [sentences]);
 
   useEffect(() => {
     startAnimation();
@@ -48,7 +48,7 @@ export function FlipSentences({
       abortController.abort();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sentences]);
+  }, [sentences, startAnimation]);
 
   return (
     <AnimatePresence mode="wait" initial={false}>

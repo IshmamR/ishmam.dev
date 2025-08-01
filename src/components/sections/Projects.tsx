@@ -6,7 +6,7 @@ import {
   InfinityIcon,
 } from "lucide-react";
 import { PROJECTS } from "../../data";
-import { TProject } from "../../types";
+import type { TProject } from "../../types";
 import {
   Collapsible,
   CollapsibleContent,
@@ -104,7 +104,7 @@ export function ProjectItem({
             {project.skills?.length ? (
               <ul className="flex flex-wrap gap-1.5 pt-2 pl-9">
                 {project.skills.map((skill) => (
-                  <li key={"project-" + skill.title} className="flex">
+                  <li key={`project-${skill.title}`} className="flex">
                     <Tag className="gap-1">
                       {skill.iconSlug ? (
                         <img

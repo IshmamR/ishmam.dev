@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { EXPERIENCES } from "../../data";
 import { cn } from "../../lib/utils";
-import { TExperiencePosition } from "../../types";
+import type { TExperiencePosition } from "../../types";
 import {
   Collapsible,
   CollapsibleContent,

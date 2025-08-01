@@ -8,6 +8,7 @@ export function Logo(props: React.ComponentProps<"svg">) {
       viewBox="0 0 240 120"
       {...props}
     >
+      <title>Grid Logo</title>
       <rect width="30" height="30" fill="currentColor" />
       <rect x="30" width="30" height="30" fill="currentColor" />
       <rect x="60" width="30" height="30" fill="currentColor" />
