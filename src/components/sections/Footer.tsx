@@ -4,12 +4,12 @@ import { cn } from "../../lib/utils";
 export function Footer() {
   return (
     <footer className="max-w-screen overflow-x-hidden px-2">
-      <div className="screen-line-before mx-auto border-x border-edge pt-4 max-w-[1024px]">
-        <p className="mb-1 px-4 text-center font-mono text-sm text-balance text-muted-foreground">
+      <div className="screen-line-before border-edge mx-auto max-w-[1024px] border-x pt-4">
+        <p className="text-muted-foreground mb-1 px-4 text-center font-mono text-sm text-balance">
           Inspired by tailwindcss.com, chanhdai.com, and ui.shadcn.com
         </p>
 
-        <p className="mb-4 px-4 text-center font-mono text-sm text-balance text-muted-foreground">
+        <p className="text-muted-foreground mb-4 px-4 text-center font-mono text-sm text-balance">
           Built by{" "}
           <a
             className="link"
@@ -34,12 +34,12 @@ export function Footer() {
         <div
           className={cn(
             "screen-line-before screen-line-after flex w-full before:z-1 after:z-1",
-            "bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] bg-size-[10px_10px] [--pattern-foreground:var(--color-edge)]/56"
+            "bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] bg-size-[10px_10px] [--pattern-foreground:var(--color-edge)]/56",
           )}
         >
-          <div className="mx-auto flex items-center justify-center gap-3 border-x border-edge bg-background px-4">
+          <div className="border-edge bg-background mx-auto flex items-center justify-center gap-3 border-x px-4">
             <a
-              className="flex font-mono text-xs font-medium text-muted-foreground"
+              className="text-muted-foreground flex font-mono text-xs font-medium"
               href={`/llms.txt`}
               target="_blank"
               rel="noopener noreferrer"
@@ -50,7 +50,7 @@ export function Footer() {
             {/* <Separator /> */}
 
             <a
-              className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
               href={`/rss`}
               target="_blank"
               rel="noopener noreferrer"

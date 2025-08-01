@@ -30,10 +30,10 @@ export default function BlinkingGrid() {
 
       const cellSize = window.innerWidth > 640 ? 28 : 16;
       const numberOfRows = Math.floor(
-        containerRef.current.clientHeight / cellSize
+        containerRef.current.clientHeight / cellSize,
       );
       const numberOfColumns = Math.floor(
-        containerRef.current.clientWidth / cellSize
+        containerRef.current.clientWidth / cellSize,
       );
       setRows(numberOfRows);
       setColumns(numberOfColumns);
@@ -49,7 +49,7 @@ export default function BlinkingGrid() {
 
   const cells = useMemo(
     () => Array.from({ length: rows * columns }, (_, i) => i),
-    [rows, columns]
+    [rows, columns],
   );
 
   const randomizeGlowers = useCallback(() => {
@@ -106,23 +106,23 @@ export default function BlinkingGrid() {
     <div
       ref={containerRef}
       className={cn(
-        "relative pointer-events-none",
-        "py-2 w-full",
-        "aspect-3/1 sm:aspect-4/1"
+        "pointer-events-none relative",
+        "w-full py-2",
+        "aspect-3/1 sm:aspect-4/1",
       )}
     >
       <div
-        className="absolute bottom-2 right-2 text-[6px] sm:text-[10px] text-muted-foreground font-mono"
+        className="text-muted-foreground absolute right-2 bottom-2 font-mono text-[6px] sm:text-[10px]"
         dir="rtl"
       >
         Rows: {rows} <br />
         Columns: {columns}
       </div>
 
-      <div id="blinking_grid" className="size-full bg-background">
+      <div id="blinking_grid" className="bg-background size-full">
         {cells.length ? (
           <div
-            className="grid px-2 size-full gap-[1px]"
+            className="grid size-full gap-[1px] px-2"
             style={{
               gridTemplateRows: `repeat(${rows}, 1fr)`,
               gridTemplateColumns: `repeat(${columns}, 1fr)`,
@@ -131,31 +131,31 @@ export default function BlinkingGrid() {
             {cells.map((row) => (
               <div
                 key={row.toString()}
-                className="size-full flex items-center justify-center"
+                className="flex size-full items-center justify-center"
               >
                 <div
                   className={cn(
-                    "size-[1px] bg-edge",
+                    "bg-edge size-[1px]",
                     initialsCells.includes(row)
-                      ? `size-full rounded-[1px] bg-foreground sm:-translate-[15px]`
+                      ? `bg-foreground rounded-[1px] sm:-translate-[15px]`
                       : glowers.includes(row)
-                        ? "bg-muted-foreground shadow-2xl/100 shadow-muted-foreground/100 size-[2px]"
-                        : "",
-                    "transition-all duration-1024 ease-in-out"
+                        ? "bg-muted-foreground shadow-muted-foreground/100 size-[2px] shadow-2xl/100"
+                        : "size-full",
+                    "transition-all duration-1024 ease-in-out",
                   )}
                 ></div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="size-full flex flex-wrap items-center justify-center overflow-hidden">
+          <div className="flex size-full flex-wrap items-center justify-center overflow-hidden">
             {Array.from({ length: 300 }, (_, i) => i).map((item) => (
               <div
                 key={`grid-placeholder-${item}`}
-                className="size-[16px] sm:size-[28px] flex items-center justify-center"
+                className="flex size-[16px] items-center justify-center sm:size-[28px]"
               >
                 <div
-                  className={cn("size-[1px] bg-muted-foreground", "bg-edge")}
+                  className={cn("bg-muted-foreground size-[1px]", "bg-edge")}
                 ></div>
               </div>
             ))}

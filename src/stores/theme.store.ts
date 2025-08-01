@@ -52,6 +52,6 @@ export const useThemeStore = create<IThemStore>()(
         set({ theme });
       },
     }),
-    { name: "theme-store" }
-  )
+    { name: "theme-store" },
+  ),
 );

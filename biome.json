@@ -28,6 +28,9 @@
 			},
 			"security": {
 				"noDangerouslySetInnerHtml": "off"
+			},
+			"suspicious": {
+				"noConsole": "error"
 			}
 		}
 	},

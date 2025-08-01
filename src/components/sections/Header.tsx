@@ -31,8 +31,8 @@ export function Header() {
   });
 
   return (
-    <header className="mt-2 sticky inset-x-0 top-0 z-50 border-y border-edge bg-background [&_*]:border-edge px-4 max-w-screen overflow-hidden">
-      <nav className="mx-auto border-x px-4 py-2 h-12 max-w-[1024px] flex items-center justify-between screen-line-before screen-line-after">
+    <header className="border-edge bg-background [&_*]:border-edge sticky inset-x-0 top-0 z-50 mt-2 max-w-screen overflow-hidden border-y px-4">
+      <nav className="screen-line-before screen-line-after mx-auto flex h-12 max-w-[1024px] items-center justify-between border-x px-4 py-2">
         <motion.div
           initial={{ opacity: 0, visibility: "hidden" }}
           animate={{
@@ -41,7 +41,7 @@ export function Header() {
           }}
         >
           <Link to="/" className="flex items-center gap-2">
-            <Logo className="h-full aspect-[1/2] text-foreground" />
+            <Logo className="text-foreground aspect-[1/2] h-full" />
           </Link>
         </motion.div>
 
@@ -50,8 +50,8 @@ export function Header() {
             <Link
               to="/"
               className={cn(
-                "font-mono text-sm font-medium text-muted-foreground transition-all duration-300",
-                location.pathname === "/" && "text-foreground"
+                "text-muted-foreground font-mono text-sm font-medium transition-all duration-300",
+                location.pathname === "/" && "text-foreground",
               )}
             >
               Ishmam
@@ -62,8 +62,8 @@ export function Header() {
               to="/"
               hash="projects"
               className={cn(
-                "font-mono text-sm font-medium text-muted-foreground transition-all duration-300",
-                location.pathname === "/#projects" && "text-foreground"
+                "text-muted-foreground font-mono text-sm font-medium transition-all duration-300",
+                location.pathname === "/#projects" && "text-foreground",
               )}
             >
               Projects
@@ -124,7 +124,7 @@ export function Header() {
                       title={`Current: ${palette} - Click to choose palette`}
                     >
                       <PaletteIcon />
-                      <div className="absolute -right-0.5 -bottom-0.5 size-2 rounded-full ring-1 ring-background bg-primary"></div>
+                      <div className="ring-background bg-primary absolute -right-0.5 -bottom-0.5 size-2 rounded-full ring-1"></div>
                       <span className="sr-only">Toggle palette</span>
                     </Button>
                   </DropdownMenuTrigger>
@@ -136,47 +136,47 @@ export function Header() {
                           type="button"
                           onClick={() => setPalette(p.key)}
                           className={cn(
-                            "flex flex-col items-center gap-1 rounded-sm p-2 border transition-all",
+                            "flex flex-col items-center gap-1 rounded-sm border p-2 transition-all",
                             palette === p.key
                               ? "border-b-primary"
-                              : "border-transparent hover:border-muted"
+                              : "hover:border-muted border-transparent",
                           )}
                           tabIndex={0}
                         >
-                          <span className="text-xs font-mono mb-1">
+                          <span className="mb-1 font-mono text-xs">
                             {p.name}
                           </span>
                           <div className="flex gap-[1px]">
                             <span
-                              className="w-3 h-3 rounded-xs border border-edge"
+                              className="border-edge h-3 w-3 rounded-xs border"
                               style={{
                                 backgroundColor:
                                   PALETTE_SWATCH[p.key][theme].primary,
                               }}
                             />
                             <span
-                              className="w-3 h-3 rounded-xs border border-edge"
+                              className="border-edge h-3 w-3 rounded-xs border"
                               style={{
                                 backgroundColor:
                                   PALETTE_SWATCH[p.key][theme].secondary,
                               }}
                             />
                             <span
-                              className="w-3 h-3 rounded-sm border border-edge"
+                              className="border-edge h-3 w-3 rounded-sm border"
                               style={{
                                 backgroundColor:
                                   PALETTE_SWATCH[p.key][theme].accent,
                               }}
                             />
                             <span
-                              className="w-3 h-3 rounded-sm border border-edge"
+                              className="border-edge h-3 w-3 rounded-sm border"
                               style={{
                                 backgroundColor:
                                   PALETTE_SWATCH[p.key][theme].destructive,
                               }}
                             />
                             <span
-                              className="w-3 h-3 rounded-sm border border-edge"
+                              className="border-edge h-3 w-3 rounded-sm border"
                               style={{
                                 backgroundColor:
                                   PALETTE_SWATCH[p.key][theme].muted,

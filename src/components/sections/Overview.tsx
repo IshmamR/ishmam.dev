@@ -59,20 +59,20 @@ function IntroIcon({ type }: { type: IntroItemProps["type"] }) {
       Icon = BriefcaseBusinessIcon;
   }
 
-  return <Icon className="pointer-events-none size-4 text-muted-foreground" />;
+  return <Icon className="text-muted-foreground pointer-events-none size-4" />;
 }
 
 function IntroItem(props: IntroItemProps) {
   return (
     <div className="flex items-center gap-4 font-mono text-sm">
       <dt
-        className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-edge dark:bg-muted dark:inset-shadow-[1px_1px_1px,0px_0px_1px] dark:inset-shadow-white/15"
+        className="bg-edge dark:bg-muted flex size-6 shrink-0 items-center justify-center rounded-lg dark:inset-shadow-[1px_1px_1px,0px_0px_1px] dark:inset-shadow-white/15"
         aria-hidden
       >
         <p className="sr-only">{props.type}</p>
         <span>
           {props.type === "custom" ? (
-            <props.icon className="pointer-events-none size-4 text-muted-foreground" />
+            <props.icon className="text-muted-foreground pointer-events-none size-4" />
           ) : (
             <IntroIcon type={props.type} />
           )}
@@ -82,7 +82,7 @@ function IntroItem(props: IntroItemProps) {
         {props.type === "custom" ? (
           props.url ? (
             <a
-              className="ml-0.5 decoration-ring underline-offset-4 hover:underline"
+              className="decoration-ring ml-0.5 underline-offset-4 hover:underline"
               href={props.url}
             >
               {props.title}
@@ -92,7 +92,7 @@ function IntroItem(props: IntroItemProps) {
           )
         ) : props.type === "phone" || props.type === "email" ? (
           <a
-            className="ml-0.5 decoration-ring underline-offset-4 hover:underline"
+            className="decoration-ring ml-0.5 underline-offset-4 hover:underline"
             href={
               props.type === "phone"
                 ? `tel:${props.tel}`
@@ -108,7 +108,7 @@ function IntroItem(props: IntroItemProps) {
               <>
                 @
                 <a
-                  className="ml-0.5 font-semibold decoration-ring underline-offset-4 hover:underline"
+                  className="decoration-ring ml-0.5 font-semibold underline-offset-4 hover:underline"
                   href={props.company.url}
                   target="__blank"
                   rel="noopener"
@@ -129,8 +129,8 @@ export function OverviewSection() {
     <section>
       <h2 className="sr-only">Overview</h2>
 
-      <div className="border-y overflow-clip border-edge [&_*]:border-edge px-4">
-        <dl className="mx-auto border-x p-4 max-w-[1024px] space-y-2">
+      <div className="border-edge [&_*]:border-edge overflow-clip border-y px-4">
+        <dl className="mx-auto max-w-[1024px] space-y-2 border-x p-4">
           <IntroItem
             type="job"
             title="Sr. Software Engineer"

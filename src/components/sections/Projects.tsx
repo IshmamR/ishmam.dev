@@ -37,21 +37,21 @@ export function ProjectItem({
             />
           ) : (
             <div
-              className="mx-4 flex size-6 shrink-0 items-center justify-center text-muted-foreground"
+              className="text-muted-foreground mx-4 flex size-6 shrink-0 items-center justify-center"
               aria-hidden="true"
             >
               <FolderIcon className="size-5" />
             </div>
           )}
 
-          <div className="flex-1 border-l border-dashed border-edge">
+          <div className="border-edge flex-1 border-l border-dashed">
             <CollapsibleTrigger className="group/project flex w-full items-center gap-4 p-4 pr-2 text-left select-none">
               <div className="flex-1">
-                <h3 className="mb-1 inline-flex items-center gap-2 leading-snug font-medium text-balance decoration-ring underline-offset-4 group-hover/project:underline">
+                <h3 className="decoration-ring mb-1 inline-flex items-center gap-2 leading-snug font-medium text-balance underline-offset-4 group-hover/project:underline">
                   {project.title}
                   <SimpleTooltip content="Open Project Link">
                     <a
-                      className="flex size-6 shrink-0 items-center justify-center text-muted-foreground hover:text-foreground"
+                      className="text-muted-foreground hover:text-foreground flex size-6 shrink-0 items-center justify-center"
                       href={project.link}
                       target="_blank"
                       rel="noopener"
@@ -62,7 +62,7 @@ export function ProjectItem({
                   </SimpleTooltip>
                 </h3>
 
-                <dl className="text-sm text-muted-foreground">
+                <dl className="text-muted-foreground text-sm">
                   <dt className="sr-only">Period</dt>
                   <dd className="flex items-center gap-0.5">
                     <span>{project.period.start}</span>
@@ -83,7 +83,7 @@ export function ProjectItem({
               </div>
 
               <div
-                className="shrink-0 text-muted-foreground [&_svg]:size-4"
+                className="text-muted-foreground shrink-0 [&_svg]:size-4"
                 aria-hidden
               >
                 <ChevronsDownUpIcon className="hidden group-data-[state=open]/project:block" />
@@ -93,8 +93,8 @@ export function ProjectItem({
           </div>
         </div>
 
-        <CollapsibleContent className="overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-          <div className="space-y-4 border-t border-dashed border-edge p-4">
+        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden duration-300">
+          <div className="border-edge space-y-4 border-t border-dashed p-4">
             {/* {project.description && (
               <Prose>
                 <Markdown>{project.description}</Markdown>
@@ -131,13 +131,13 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="border-y overflow-clip border-edge [&_*]:border-edge px-4"
+      className="border-edge [&_*]:border-edge overflow-clip border-y px-4"
     >
-      <div className="mx-auto border-x max-w-[1024px]">
+      <div className="mx-auto max-w-[1024px] border-x">
         <div className="screen-line-after px-4">
           <h2 className="font-heading text-3xl font-medium">
             Projects
-            <sup className="ml-1 font-mono text-sm text-muted-foreground select-none">
+            <sup className="text-muted-foreground ml-1 font-mono text-sm select-none">
               ({PROJECTS.length})
             </sup>
           </h2>
@@ -145,7 +145,7 @@ export function ProjectsSection() {
 
         <div className="">
           {PROJECTS.map((project) => (
-            <div key={project.id} className="border-b border-edge">
+            <div key={project.id} className="border-edge border-b">
               <ProjectItem project={project} />
             </div>
           ))}

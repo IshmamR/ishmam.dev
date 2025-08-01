@@ -33,14 +33,14 @@ export function TechStackSection() {
   return (
     <section
       id="stack"
-      className="border-y overflow-clip border-edge [&_*]:border-edge px-4"
+      className="border-edge [&_*]:border-edge overflow-clip border-y px-4"
     >
-      <div className="mx-auto border-x max-w-[1024px]">
+      <div className="mx-auto max-w-[1024px] border-x">
         <div className="screen-line-after px-4">
           <h2 className="font-heading text-3xl font-medium">Tech Stack</h2>
         </div>
 
-        <div className="flex flex-wrap gap-4 select-none p-4">
+        <div className="flex flex-wrap gap-4 p-4 select-none">
           {TECH_STACK.map((item) => {
             return (
               <SimpleTooltip key={item.slug} content={item.title}>

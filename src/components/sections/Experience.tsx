@@ -22,11 +22,11 @@ function ExperiencePositionItem({
 }) {
   return (
     <Collapsible defaultOpen={position.defaultExpanded} asChild>
-      <div className="relative last:before:absolute last:before:h-full last:before:w-4 last:before:bg-background">
+      <div className="last:before:bg-background relative last:before:absolute last:before:h-full last:before:w-4">
         <CollapsibleTrigger className="group/experience block w-full text-left select-none">
-          <div className="relative z-1 mb-1 flex items-center gap-3 bg-background">
+          <div className="bg-background relative z-1 mb-1 flex items-center gap-3">
             <div
-              className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground dark:inset-shadow-[1px_1px_1px,0px_0px_1px] dark:inset-shadow-white/15"
+              className="bg-muted text-muted-foreground flex size-6 shrink-0 items-center justify-center rounded-lg dark:inset-shadow-[1px_1px_1px,0px_0px_1px] dark:inset-shadow-white/15"
               aria-hidden
             >
               {position.icon ? (
@@ -36,12 +36,12 @@ function ExperiencePositionItem({
               )}
             </div>
 
-            <h4 className="flex-1 font-medium text-balance decoration-ring underline-offset-4 group-hover/experience:underline">
+            <h4 className="decoration-ring flex-1 font-medium text-balance underline-offset-4 group-hover/experience:underline">
               {position.title}
             </h4>
 
             <div
-              className="shrink-0 text-muted-foreground [&_svg]:size-4"
+              className="text-muted-foreground shrink-0 [&_svg]:size-4"
               aria-hidden
             >
               <ChevronsDownUpIcon className="hidden group-data-[state=open]/experience:block" />
@@ -49,7 +49,7 @@ function ExperiencePositionItem({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 pl-9 text-sm text-muted-foreground">
+          <div className="text-muted-foreground flex items-center gap-2 pl-9 text-sm">
             {position.employmentType ? (
               <>
                 <dl>
@@ -85,7 +85,7 @@ function ExperiencePositionItem({
           </div>
         </CollapsibleTrigger>
 
-        <CollapsibleContent className="overflow-hidden duration-300 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden duration-300">
           {/* {position.description && (
             <Prose className="pt-2 pl-9">
               <Markdown>{position.description}</Markdown>
@@ -121,9 +121,9 @@ export function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="border-y overflow-clip border-edge [&_*]:border-edge px-4"
+      className="border-edge [&_*]:border-edge overflow-clip border-y px-4"
     >
-      <div className="mx-auto border-x max-w-[1024px]">
+      <div className="mx-auto max-w-[1024px] border-x">
         <div className="screen-line-after px-4">
           <h2 className="font-heading text-3xl font-medium">Experience</h2>
         </div>
@@ -134,7 +134,7 @@ export function ExperienceSection() {
               key={org.slug}
               className={cn(
                 "space-y-4 py-4",
-                index < EXPERIENCES.length - 1 ? "screen-line-after" : ""
+                index < EXPERIENCES.length - 1 ? "screen-line-after" : "",
               )}
             >
               <div className="flex items-center gap-3">
@@ -155,14 +155,14 @@ export function ExperienceSection() {
 
                 {org.isCurrent ? (
                   <span className="relative flex items-center justify-center">
-                    <span className="absolute inline-flex size-3 animate-ping rounded-full bg-success opacity-50" />
-                    <span className="relative inline-flex size-2 rounded-full bg-success" />
+                    <span className="bg-success absolute inline-flex size-3 animate-ping rounded-full opacity-50" />
+                    <span className="bg-success relative inline-flex size-2 rounded-full" />
                     <span className="sr-only">Current Employer</span>
                   </span>
                 ) : null}
               </div>
 
-              <div className="relative space-y-4 before:absolute before:left-3 before:h-full before:w-px before:bg-border">
+              <div className="before:bg-border relative space-y-4 before:absolute before:left-3 before:h-full before:w-px">
                 {org.positions.map((pos) => (
                   <ExperiencePositionItem key={pos.id} position={pos} />
                 ))}

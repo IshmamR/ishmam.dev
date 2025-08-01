@@ -30,7 +30,7 @@ export function downloadElementAsImage(elementId: string) {
 
       URL.revokeObjectURL(url);
     })
-    .catch((err) => {
-      console.error("oops, something went wrong!", err);
+    .catch((_err) => {
+      // console.error("oops, something went wrong!", err);
     });
 }

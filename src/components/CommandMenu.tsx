@@ -142,7 +142,7 @@ export function CommandMenu() {
           setOpen((open) => !open);
         }
       },
-      { signal }
+      { signal },
     );
 
     return () => abortController.abort();
@@ -158,7 +158,7 @@ export function CommandMenu() {
         router.navigate({ to: href });
       }
     },
-    [router]
+    [router],
   );
 
   const handleCopyText = useCallback((text: string, message: string) => {
@@ -172,7 +172,7 @@ export function CommandMenu() {
       setOpen(false);
       setTheme(theme);
     },
-    [setTheme]
+    [setTheme],
   );
 
   // const { blogLinks, componentLinks } = useMemo(
@@ -192,8 +192,8 @@ export function CommandMenu() {
       <Button
         variant="secondary"
         className={cn(
-          "h-8 gap-1.5 rounded-full bg-zinc-50 px-2.5 text-muted-foreground select-none hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-900",
-          "not-dark:border dark:inset-shadow-[1px_1px_1px,0px_0px_1px] dark:inset-shadow-white/15"
+          "text-muted-foreground h-8 gap-1.5 rounded-full bg-zinc-50 px-2.5 select-none hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-900",
+          "not-dark:border dark:inset-shadow-[1px_1px_1px,0px_0px_1px] dark:inset-shadow-white/15",
         )}
         onClick={() => setOpen(true)}
       >
@@ -290,7 +290,7 @@ export function CommandMenu() {
                 handleCopyText(
                   "",
                   // getMarkSVG(resolvedTheme === "light" ? "#000" : "#fff"),
-                  "Copied Mark as SVG"
+                  "Copied Mark as SVG",
                 );
               }}
             >
@@ -303,7 +303,7 @@ export function CommandMenu() {
                 handleCopyText(
                   "",
                   // getWordmarkSVG(resolvedTheme === "light" ? "#000" : "#fff"),
-                  "Copied Logotype as SVG"
+                  "Copied Logotype as SVG",
                 );
               }}
             >
@@ -422,7 +422,7 @@ const ENTER_ACTION_LABELS: Record<CommandKind, string> = {
 
 function CommandMenuFooter() {
   const selectedCommandKind = useCommandState(
-    (state) => COMMAND_META_MAP.get(state.value)?.commandKind ?? "page"
+    (state) => COMMAND_META_MAP.get(state.value)?.commandKind ?? "page",
   );
 
   return (
@@ -453,8 +453,8 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(
-        "pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-sm bg-black/5 px-1 font-sans text-[13px] font-normal text-muted-foreground shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
-        className
+        "text-muted-foreground pointer-events-none flex h-5 min-w-6 items-center justify-center gap-1 rounded-sm bg-black/5 px-1 font-sans text-[13px] font-normal shadow-[inset_0_-1px_2px] shadow-black/10 select-none dark:bg-white/10 dark:shadow-white/10 dark:text-shadow-xs [&_svg:not([class*='size-'])]:size-3",
+        className,
       )}
       {...props}
     />

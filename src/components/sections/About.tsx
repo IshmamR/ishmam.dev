@@ -4,9 +4,9 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="border-y overflow-clip border-edge [&_*]:border-edge px-4"
+      className="border-edge [&_*]:border-edge overflow-clip border-y px-4"
     >
-      <div className="mx-auto border-x max-w-[1024px]">
+      <div className="mx-auto max-w-[1024px] border-x">
         <div className="screen-line-after px-4">
           <h2 className="font-heading text-3xl font-medium">About</h2>
         </div>
@@ -14,14 +14,14 @@ export function AboutSection() {
         <div className="p-4">
           <div
             className={cn(
-              "prose prose-sm max-w-none font-mono text-foreground prose-zinc dark:prose-invert",
+              "prose prose-sm text-foreground prose-zinc dark:prose-invert max-w-none font-mono",
               "prose-headings:font-heading prose-headings:font-semibold prose-headings:text-balance",
               "prose-h2:border-b prose-h2:pb-2",
               "prose-lead:text-base",
               "prose-a:font-semibold prose-a:break-words prose-a:text-foreground prose-a:underline prose-a:underline-offset-4",
               "prose-code:rounded-md prose-code:border prose-code:bg-muted/50 prose-code:px-[0.3rem] prose-code:py-[0.2rem] prose-code:text-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none",
               "prose-hr:border-edge",
-              "text-justify text-base"
+              "text-justify text-base",
             )}
           >
             <p>
