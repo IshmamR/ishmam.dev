@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 export function BlinkingGridPlaceholder() {
   return (
-    <div className={cn("relative", "py-2 w-full", "aspect-2/1 sm:aspect-3/1")}>
+    <div className={cn("relative", "py-2 w-full", "aspect-3/1 sm:aspect-4/1")}>
       <div
         className="absolute bottom-2 right-2 text-[6px] sm:text-[10px] text-muted-foreground font-mono"
         dir="rtl"
@@ -13,7 +13,7 @@ export function BlinkingGridPlaceholder() {
 
       <div id="blinking_grid" className="size-full bg-background">
         <div className="size-full flex flex-wrap items-center justify-center overflow-hidden">
-          {Array.from({ length: 420 }, (_, i) => i).map((item) => (
+          {Array.from({ length: 300 }, (_, i) => i).map((item) => (
             <div
               key={`grid-placeholder-${item}`}
               className="size-[16px] sm:size-[28px] flex items-center justify-center"

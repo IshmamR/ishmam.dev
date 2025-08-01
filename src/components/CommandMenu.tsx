@@ -31,7 +31,8 @@ import {
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { SOCIAL_LINKS } from "../data";
-import { TTheme, useTheme } from "../hooks/useTheme";
+import { TTheme } from "../hooks/useTheme";
+import { useThemeStore } from "../stores/theme.store";
 import { Logo } from "./icons/Logo";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
@@ -116,7 +117,7 @@ const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
 export function CommandMenu({}: { posts?: any[] }) {
   const router = useRouter();
 
-  const { changeTheme } = useTheme();
+  const setTheme = useThemeStore((s) => s.setTheme);
 
   const [open, setOpen] = useState(false);
 
@@ -168,7 +169,7 @@ export function CommandMenu({}: { posts?: any[] }) {
 
   const handleThemeChange = useCallback((theme: TTheme) => {
     setOpen(false);
-    changeTheme(theme);
+    setTheme(theme);
   }, []);
 
   // const { blogLinks, componentLinks } = useMemo(

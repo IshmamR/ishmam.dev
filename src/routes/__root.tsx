@@ -15,23 +15,14 @@ import { Header } from "../components/sections/Header";
 export const Route = createRootRoute({
   head: () => ({
     meta: [
-      {
-        charSet: "utf-8",
-      },
+      { charSet: "utf-8" },
       {
         name: "viewport",
         content: "width=device-width, initial-scale=1",
       },
-      {
-        title: "Ishmam - Full-stack & Beyond",
-      },
+      { title: "Ishmam - Full-stack & Beyond" },
     ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: globalCss,
-      },
-    ],
+    links: [{ rel: "stylesheet", href: globalCss }],
   }),
   component: RootComponent,
 });
@@ -45,24 +36,42 @@ function RootComponent() {
 }
 
 function chooseThemeOnLoad() {
-  let theme = localStorage.getItem("theme");
-  if (!theme) {
-    theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  }
-  const palette = localStorage.getItem("palette") || "monokai";
-  document.documentElement.classList.remove("light", "dark");
-  document.documentElement.classList.add(theme);
-  document.documentElement.classList.remove(
+  const themeStore = localStorage.getItem("theme-store");
+  if (!themeStore) return;
+
+  const palettesClasses = [
     "palette-classic",
     "palette-neon",
     "palette-ocean",
     "palette-forest",
     "palette-sunset",
-    "palette-monokai"
-  );
-  document.documentElement.classList.add(`palette-${palette}`);
+    "palette-monokai",
+  ];
+
+  try {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.remove(...palettesClasses);
+
+    const { state } = JSON.parse(themeStore);
+    if (!state) {
+      const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      document.documentElement.classList.add(theme);
+      document.documentElement.classList.add("palette-classic");
+      return;
+    }
+
+    let theme = state.theme;
+    if (!theme) {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+
+    document.documentElement.classList.add(theme);
+    document.documentElement.classList.add(`palette-${state.palette}`);
+  } catch (error) {}
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {

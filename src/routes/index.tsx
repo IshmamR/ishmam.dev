@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AboutSection } from "../components/sections/About";
+import { ExperienceSection } from "../components/sections/Experience";
 import { HeroSection } from "../components/sections/Hero";
 import { OverviewSection } from "../components/sections/Overview";
-import { Pattern } from "../components/sections/Pattern";
+import { ProjectsSection } from "../components/sections/Projects";
+import { SeparatorPattern } from "../components/sections/SeparatorPattern";
 import { SocialLinksSection } from "../components/sections/SocialLinks";
+import { TechStackSection } from "../components/sections/TechStack";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -13,16 +16,25 @@ function Home() {
   return (
     <>
       <HeroSection />
-      <Pattern />
+      <SeparatorPattern />
 
       <OverviewSection />
-      <Pattern />
+      <SeparatorPattern />
 
       <SocialLinksSection />
-      <Pattern />
+      <SeparatorPattern />
 
       <AboutSection />
-      <Pattern />
+      <SeparatorPattern />
+
+      <TechStackSection />
+      <SeparatorPattern />
+
+      <ExperienceSection />
+      <SeparatorPattern />
+
+      <ProjectsSection />
+      <SeparatorPattern />
     </>
   );
 }

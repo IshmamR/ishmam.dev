@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 
-export function Pattern() {
+export function SeparatorPattern() {
   return (
     <>
-      <div className="border-b overflow-clip border-edge [&_*]:border-edge px-4">
+      <div className="overflow-clip border-edge [&_*]:border-edge px-4">
         <div
           className={cn(
             "mx-auto bg-transparent",

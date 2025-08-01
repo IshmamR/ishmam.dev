@@ -1,8 +1,158 @@
+import {
+  BriefcaseBusinessIcon,
+  CodeXmlIcon,
+  GlobeIcon,
+  LightbulbIcon,
+  LucideProps,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from "lucide-react";
+
+type IntroPhoneItem = {
+  type: "phone";
+  tel: string;
+};
+type IntroJobItem = {
+  type: "job";
+  company?: {
+    name: string;
+    url: `https://${string}`;
+  };
+};
+type IntroCustomItem = {
+  type: "custom";
+  icon: React.ComponentType<LucideProps>;
+  url?: `https://${string}`;
+};
+
+type IntroItemProps = (
+  | IntroPhoneItem
+  | IntroJobItem
+  | IntroCustomItem
+  | {
+      type: "founder" | "email" | "location";
+    }
+) & {
+  title: string;
+};
+
+function IntroIcon({ type }: { type: IntroItemProps["type"] }) {
+  let Icon = BriefcaseBusinessIcon;
+  switch (type) {
+    case "job":
+      Icon = CodeXmlIcon;
+      break;
+    case "founder":
+      Icon = LightbulbIcon;
+      break;
+    case "phone":
+      Icon = PhoneIcon;
+      break;
+    case "email":
+      Icon = MailIcon;
+      break;
+    case "location":
+      Icon = MapPinIcon;
+      break;
+    default:
+      Icon = BriefcaseBusinessIcon;
+  }
+
+  return <Icon className="pointer-events-none size-4 text-muted-foreground" />;
+}
+
+function IntroItem(props: IntroItemProps) {
+  return (
+    <div className="flex items-center gap-4 font-mono text-sm">
+      <dt
+        className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-edge dark:bg-muted dark:inset-shadow-[1px_1px_1px,0px_0px_1px] dark:inset-shadow-white/15"
+        aria-hidden
+      >
+        <p className="sr-only">{props.type}</p>
+        <span>
+          {props.type === "custom" ? (
+            <props.icon className="pointer-events-none size-4 text-muted-foreground" />
+          ) : (
+            <IntroIcon type={props.type} />
+          )}
+        </span>
+      </dt>
+      <dd className="text-balance">
+        {props.type === "custom" ? (
+          props.url ? (
+            <a
+              className="ml-0.5 decoration-ring underline-offset-4 hover:underline"
+              href={props.url}
+            >
+              {props.title}
+            </a>
+          ) : (
+            props.title
+          )
+        ) : props.type === "phone" || props.type === "email" ? (
+          <a
+            className="ml-0.5 decoration-ring underline-offset-4 hover:underline"
+            href={
+              props.type === "phone"
+                ? `tel:${props.tel}`
+                : `mailto:${props.title}`
+            }
+          >
+            {props.title}
+          </a>
+        ) : (
+          <>
+            {props.title}&nbsp;
+            {props.type === "job" && props.company ? (
+              <>
+                @
+                <a
+                  className="ml-0.5 font-semibold decoration-ring underline-offset-4 hover:underline"
+                  href={props.company.url}
+                  target="__blank"
+                  rel="noopener"
+                >
+                  {props.company.name}
+                </a>
+              </>
+            ) : null}
+          </>
+        )}
+      </dd>
+    </div>
+  );
+}
+
 export function OverviewSection() {
   return (
     <section>
-      <div className="border-b overflow-clip border-edge [&_*]:border-edge px-4">
-        <div className="mx-auto border-x px-4 py-2 h-40 max-w-[1024px]"></div>
+      <h2 className="sr-only">Overview</h2>
+
+      <div className="border-y overflow-clip border-edge [&_*]:border-edge px-4">
+        <dl className="mx-auto border-x p-4 max-w-[1024px] space-y-2">
+          <IntroItem
+            type="job"
+            title="Sr. Software Engineer"
+            company={{
+              name: "Headless Technologies LTD.",
+              url: "https://headless.ltd",
+            }}
+          />
+          <IntroItem type="location" title="Dhaka, Bangladesh" />
+          <IntroItem type="email" title="ishmam785@gmail.com" />
+          <IntroItem
+            type="phone"
+            tel="+8801405274359"
+            title="+880 1405274359"
+          />
+          <IntroItem
+            type="custom"
+            icon={GlobeIcon}
+            title="ishmam.dev"
+            url="https://ishmam.dev"
+          />
+        </dl>
       </div>
     </section>
   );

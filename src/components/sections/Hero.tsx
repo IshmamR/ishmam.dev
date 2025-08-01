@@ -67,8 +67,9 @@ export function HeroSection() {
             <div className="py-1 pl-2 sm:pl-4 sm:h-auto">
               <FlipSentences
                 sentences={[
-                  "I code",
                   "Software Engineer",
+                  "Generalist",
+                  "I code",
                   "Who let the dogs out ?!",
                 ]}
               />

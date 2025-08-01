@@ -2,8 +2,8 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { MoonStarIcon, PaletteIcon, SunIcon } from "lucide-react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
-import { PALETTE, useTheme } from "../../hooks/useTheme";
 import { cn } from "../../lib/utils";
+import { PALETTE, useThemeStore } from "../../stores/theme.store";
 import { PALETTE_SWATCH } from "../../styles/theme";
 import { CommandMenu } from "../CommandMenu";
 import { Logo } from "../icons/Logo";
@@ -19,7 +19,10 @@ export function Header() {
 
   const { scrollY } = useScroll();
 
-  const { theme, palette, toggleTheme, changePalette } = useTheme();
+  const theme = useThemeStore((s) => s.theme);
+  const palette = useThemeStore((s) => s.palette);
+  const toggleTheme = useThemeStore((s) => s.toggleTheme);
+  const setPalette = useThemeStore((s) => s.setPalette);
 
   const [visible, setVisible] = useState(false);
 
@@ -66,7 +69,7 @@ export function Header() {
               Projects
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/"
               className={cn(
@@ -76,7 +79,7 @@ export function Header() {
             >
               Stats
             </Link>
-          </li>
+          </li> */}
 
           <li>
             <ul className="flex items-center gap-2 max-sm:hidden">
@@ -127,7 +130,7 @@ export function Header() {
                         <button
                           key={p.key}
                           type="button"
-                          onClick={() => changePalette(p.key)}
+                          onClick={() => setPalette(p.key)}
                           className={cn(
                             "flex flex-col items-center gap-1 rounded-sm p-2 border transition-all",
                             palette === p.key
@@ -176,11 +179,6 @@ export function Header() {
                               }}
                             />
                           </div>
-                          {/* {palette === p.key && (
-                            <span className="text-[10px] text-muted-foreground mt-1">
-                              (Current)
-                            </span>
-                          )} */}
                         </button>
                       ))}
                     </div>

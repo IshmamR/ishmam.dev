@@ -108,7 +108,7 @@ export default function BlinkingGrid({}) {
       className={cn(
         "relative pointer-events-none",
         "py-2 w-full",
-        "aspect-2/1 sm:aspect-3/1"
+        "aspect-3/1 sm:aspect-4/1"
       )}
     >
       <div
@@ -149,7 +149,7 @@ export default function BlinkingGrid({}) {
           </div>
         ) : (
           <div className="size-full flex flex-wrap items-center justify-center overflow-hidden">
-            {Array.from({ length: 420 }, (_, i) => i).map((item) => (
+            {Array.from({ length: 300 }, (_, i) => i).map((item) => (
               <div
                 key={`grid-placeholder-${item}`}
                 className="size-[16px] sm:size-[28px] flex items-center justify-center"
