@@ -135,13 +135,16 @@ export default function BlinkingGrid() {
               >
                 <div
                   className={cn(
-                    "bg-edge size-[1px]",
+                    "bg-edge transition-all duration-1024 ease-in-out",
+                    initialsCells.includes(row) &&
+                      "bg-foreground rounded-[1px] sm:-translate-[15px]",
+                    glowers.includes(row) &&
+                      "bg-muted-foreground shadow-muted-foreground/100 shadow-2xl/100",
                     initialsCells.includes(row)
-                      ? `bg-foreground rounded-[1px] sm:-translate-[15px]`
+                      ? "size-full"
                       : glowers.includes(row)
-                        ? "bg-muted-foreground shadow-muted-foreground/100 size-[2px] shadow-2xl/100"
-                        : "size-full",
-                    "transition-all duration-1024 ease-in-out",
+                        ? "size-[2px]"
+                        : "size-[1px]",
                   )}
                 ></div>
               </div>
