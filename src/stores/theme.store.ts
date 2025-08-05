@@ -31,7 +31,7 @@ export const useThemeStore = create<IThemStore>()(
   persist(
     (set, get) => ({
       theme: "dark",
-      palette: "classic",
+      palette: "starry-night",
       setTheme: (theme) => {
         const currentTheme = get().theme;
         document.documentElement.classList.remove(currentTheme);
