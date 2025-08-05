@@ -28,7 +28,7 @@ export default function BlinkingGrid() {
     function resizeListener() {
       if (!containerRef.current) return;
 
-      const cellSize = window.innerWidth > 640 ? 28 : 16;
+      const cellSize = window.innerWidth > 640 ? 28 : 18;
       const numberOfRows = Math.floor(
         containerRef.current.clientHeight / cellSize,
       );
@@ -108,7 +108,7 @@ export default function BlinkingGrid() {
       className={cn(
         "pointer-events-none relative",
         "w-full py-2",
-        "aspect-3/1 sm:aspect-4/1",
+        "aspect-2/1 sm:aspect-4/1",
       )}
     >
       <div
@@ -135,31 +135,48 @@ export default function BlinkingGrid() {
               >
                 <div
                   className={cn(
-                    "bg-edge transition-all duration-1024 ease-in-out",
+                    "text-edge transition-all duration-1024 ease-in-out",
+                    "flex items-center justify-center",
+                    glowers.includes(row) && "text-muted-foreground",
                     initialsCells.includes(row) &&
-                      "bg-foreground rounded-[1px] sm:-translate-[15px]",
-                    glowers.includes(row) &&
-                      "bg-muted-foreground shadow-muted-foreground/100 shadow-2xl/100",
-                    initialsCells.includes(row)
-                      ? "size-full"
-                      : glowers.includes(row)
-                        ? "size-[2px]"
-                        : "size-[1px]",
+                      "bg-foreground z-10 size-full! sm:-translate-[14px]",
                   )}
-                ></div>
+                >
+                  {!initialsCells.includes(row) ? (
+                    <svg
+                      width="5"
+                      height="5"
+                      viewBox="0 0 5 5"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>corners</title>
+                      <rect x="2" width="1" height="5" fill="currentColor" />
+                      <rect y="2" width="5" height="1" fill="currentColor" />
+                    </svg>
+                  ) : null}
+                </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="flex size-full flex-wrap items-center justify-center overflow-hidden">
-            {Array.from({ length: 300 }, (_, i) => i).map((item) => (
+            {Array.from({ length: 360 }, (_, i) => i).map((item) => (
               <div
                 key={`grid-placeholder-${item}`}
-                className="flex size-[16px] items-center justify-center sm:size-[28px]"
+                className="text-edge flex size-[18px] items-center justify-center sm:size-[28px]"
               >
-                <div
-                  className={cn("bg-muted-foreground size-[1px]", "bg-edge")}
-                ></div>
+                <svg
+                  width="5"
+                  height="5"
+                  viewBox="0 0 5 5"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>corners</title>
+                  <rect x="2" width="1" height="5" fill="currentColor" />
+                  <rect y="2" width="5" height="1" fill="currentColor" />
+                </svg>
               </div>
             ))}
           </div>

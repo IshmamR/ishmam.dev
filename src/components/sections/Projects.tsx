@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { PROJECTS } from "../../data";
 import type { TProject } from "../../types";
+import { ProseMd } from "../ProseMD";
 import {
   Collapsible,
   CollapsibleContent,
@@ -95,11 +96,9 @@ export function ProjectItem({
 
         <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden duration-300">
           <div className="border-edge space-y-4 border-t border-dashed p-4">
-            {/* {project.description && (
-              <Prose>
-                <Markdown>{project.description}</Markdown>
-              </Prose>
-            )} */}
+            {project.description ? (
+              <ProseMd>{project.description}</ProseMd>
+            ) : null}
 
             {project.skills?.length ? (
               <ul className="flex flex-wrap gap-1.5 pt-2 pl-9">

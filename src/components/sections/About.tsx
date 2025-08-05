@@ -1,4 +1,19 @@
-import { cn } from "../../lib/utils";
+import { ProseMd } from "../ProseMD";
+
+const ABOUT_MD = `
+Me Ishmam. Me software engineer. Me have **_5+_** years of experience in web. But me try to be a **_generalist_**. \
+Me like work on interesting projects — be it web, native, AI, or even embedded. Me like pushing tech to it limit.
+
+> "Why waste time say lot word when few word do trick?"
+> — Future president
+
+Me happiest in small teams, shipping fast. Me like building projects from scratch. Me build **_scalable_** software even if user is only bot attacks.
+
+> "Many small time, make big time."
+
+When me get free time, me explore new tech and breakthroughs in industry. Currently, me exploring 🦀\
+[rust](https://www.rust-lang.org/) in AI and embedded world.
+`;
 
 export function AboutSection() {
   return (
@@ -12,54 +27,7 @@ export function AboutSection() {
         </div>
 
         <div className="p-4">
-          <div
-            className={cn(
-              "prose prose-sm text-foreground prose-zinc dark:prose-invert max-w-none font-mono",
-              "prose-headings:font-heading prose-headings:font-semibold prose-headings:text-balance",
-              "prose-h2:border-b prose-h2:pb-2",
-              "prose-lead:text-base",
-              "prose-a:font-semibold prose-a:break-words prose-a:text-foreground prose-a:underline prose-a:underline-offset-4",
-              "prose-code:rounded-md prose-code:border prose-code:bg-muted/50 prose-code:px-[0.3rem] prose-code:py-[0.2rem] prose-code:text-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none",
-              "prose-hr:border-edge",
-              "text-justify text-base",
-            )}
-          >
-            <p>
-              Me Ishmam. Me software engineer. Me have{" "}
-              <strong>
-                <em>5+</em> years
-              </strong>{" "}
-              of experience in web. But me try to be a{" "}
-              <em>
-                <strong>generalist</strong>
-              </em>
-              . Me like work on interesting projects — be it web, native, AI, or
-              even embedded. Me like pushing tech to it limit.
-            </p>
-            <blockquote>
-              Why say lot word when few word do trick - Future president
-            </blockquote>
-            <p>
-              Me happiest in small teams, shipping fast. Me like building
-              projects from scratch. Me build{" "}
-              <em>
-                <strong>scalable</strong>
-              </em>{" "}
-              software even if user is only bot attacks.
-            </p>
-            <p>
-              When me get free time, me explore new tech and breakthroughs in
-              industry. Currently, me exploring 🦀
-              <a
-                href="https://www.rust-lang.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                rust
-              </a>{" "}
-              in AI and embedded world.
-            </p>
-          </div>
+          <ProseMd>{ABOUT_MD}</ProseMd>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import {
 import { EXPERIENCES } from "../../data";
 import { cn } from "../../lib/utils";
 import type { TExperiencePosition } from "../../types";
+import { ProseMd } from "../ProseMD";
 import {
   Collapsible,
   CollapsibleContent,
@@ -86,11 +87,9 @@ function ExperiencePositionItem({
         </CollapsibleTrigger>
 
         <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden duration-300">
-          {/* {position.description && (
-            <Prose className="pt-2 pl-9">
-              <Markdown>{position.description}</Markdown>
-            </Prose>
-          )} */}
+          {position.description ? (
+            <ProseMd className="pt-2 pl-9">{position.description}</ProseMd>
+          ) : null}
 
           {position.skills?.length ? (
             <ul className="flex flex-wrap gap-1.5 pt-2 pl-9">

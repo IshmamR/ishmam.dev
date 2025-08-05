@@ -214,7 +214,7 @@ export const EXPERIENCES: TExperience[] = [
           start: "07.2024",
         },
         employmentType: "Full time",
-        description: "SHAKALAKA",
+        description: `I code stuff. Sometimes I think about what to code. But mainly, I just code.`,
         skills: [
           { title: "Typescript", iconSlug: "ts" },
           { title: "React", iconSlug: "react" },
@@ -230,7 +230,7 @@ export const EXPERIENCES: TExperience[] = [
           end: "06.2024",
         },
         employmentType: "Part time",
-        description: "SHAKALAKA",
+        description: `I coded.`,
         skills: [
           { title: "Typescript", iconSlug: "ts" },
           { title: "React", iconSlug: "react" },
@@ -277,7 +277,10 @@ export const PROJECTS: TProject[] = [
     title: "Ishmam.dev",
     link: "https://ishmam.dev",
     period: { start: "07.2025" },
-    skills: [],
+    skills: [
+      { title: "Tanstack Start", iconSlug: "tanstack" },
+      { title: "Tailwind CSS", iconSlug: "tailwindcss" },
+    ],
     isExpanded: false,
     description: "",
   },

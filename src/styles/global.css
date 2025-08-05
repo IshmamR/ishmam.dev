@@ -61,3 +61,8 @@
 @utility screen-line-after {
   @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge;
 }
+
+.prose blockquote p::before,
+.prose blockquote p::after {
+  content: none !important;
+}
