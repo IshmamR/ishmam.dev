@@ -105,14 +105,10 @@ export default function BlinkingGrid() {
   return (
     <div
       ref={containerRef}
-      className={cn(
-        "pointer-events-none relative",
-        "w-full py-2",
-        "aspect-2/1 sm:aspect-4/1",
-      )}
+      className={cn("relative", "w-full py-2", "aspect-2/1 sm:aspect-4/1")}
     >
       <div
-        className="text-muted-foreground absolute right-2 bottom-2 font-mono text-[6px] sm:text-[10px]"
+        className="text-muted-foreground pointer-events-none absolute right-2 bottom-2 font-mono text-[6px] sm:text-[10px]"
         dir="rtl"
       >
         Rows: {rows} <br />
@@ -135,11 +131,11 @@ export default function BlinkingGrid() {
               >
                 <div
                   className={cn(
-                    "text-edge transition-all duration-1024 ease-in-out",
-                    "flex items-center justify-center",
-                    glowers.includes(row) && "text-muted-foreground",
+                    "text-edge transition-all ease-in-out",
+                    "pointer-events-none flex items-center justify-center",
+                    glowers.includes(row) && "text-secondary duration-1024",
                     initialsCells.includes(row) &&
-                      "bg-foreground z-10 size-full! sm:-translate-[14px]",
+                      "bg-primary pointer-events-auto z-10 size-full! duration-100 hover:cursor-pointer hover:opacity-80 sm:-translate-[14px]",
                   )}
                 >
                   {!initialsCells.includes(row) ? (

@@ -10,11 +10,11 @@ export type TTheme = (typeof themes)[number];
 
 export const PALETTE = [
   { name: "Classic", key: "classic" },
-  { name: "Neon", key: "neon" },
-  { name: "Ocean", key: "ocean" },
-  { name: "Forest", key: "forest" },
-  { name: "Sunset", key: "sunset" },
-  { name: "Monokai", key: "monokai" },
+  { name: "Doom", key: "doom" },
+  { name: "Starry Night", key: "starry-night" },
+  { name: "Candyland", key: "candyland" },
+  { name: "Nature", key: "nature" },
+  { name: "Claude", key: "claude" },
 ] as const;
 export const palettes = PALETTE.map((palette) => palette.key);
 export type TPalette = (typeof palettes)[number];

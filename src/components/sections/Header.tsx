@@ -136,7 +136,7 @@ export function Header() {
                           type="button"
                           onClick={() => setPalette(p.key)}
                           className={cn(
-                            "flex flex-col items-center gap-1 rounded-sm border p-2 transition-all",
+                            "flex flex-col items-center justify-between gap-1 rounded-sm border p-2 transition-all",
                             palette === p.key
                               ? "border-b-primary"
                               : "hover:border-muted border-transparent",

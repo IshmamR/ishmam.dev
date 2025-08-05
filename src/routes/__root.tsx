@@ -39,15 +39,17 @@ function RootComponent() {
   );
 }
 
-function chooseThemeOnLoad() {
+function _chooseThemeOnLoad() {
   const palettesClasses = [
     "palette-classic",
-    "palette-neon",
-    "palette-ocean",
-    "palette-forest",
-    "palette-sunset",
-    "palette-monokai",
+    "palette-doom",
+    "palette-starry-night",
+    "palette-candyland",
+    "palette-nature",
+    "palette-claude",
   ];
+
+  const defaultPalette = "starry-night";
 
   function getSystemTheme() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -59,7 +61,7 @@ function chooseThemeOnLoad() {
   if (!themeStore) {
     const theme = getSystemTheme();
     document.documentElement.classList.add(theme);
-    document.documentElement.classList.add("palette-classic");
+    document.documentElement.classList.add(`palette-${defaultPalette}`);
     return;
   }
 
@@ -71,7 +73,7 @@ function chooseThemeOnLoad() {
     if (!state) {
       const theme = getSystemTheme();
       document.documentElement.classList.add(theme);
-      document.documentElement.classList.add("palette-classic");
+      document.documentElement.classList.add(`palette-${defaultPalette}`);
       return;
     }
 
@@ -82,22 +84,29 @@ function chooseThemeOnLoad() {
 
     document.documentElement.classList.add(theme);
     document.documentElement.classList.add(
-      `palette-${state.palette ?? "classic"}`
+      `palette-${state.palette ?? defaultPalette}`,
     );
-  } catch (_e) {
+  } catch (_) {
     const theme = getSystemTheme();
     document.documentElement.classList.add(theme);
-    document.documentElement.classList.add("palette-classic");
+    document.documentElement.classList.add(`palette-${defaultPalette}`);
   }
 }
+
+// Minified, so we load a tiny bit faster
+const chooseThemeOnLoadMinifiedString =
+  // biome-ignore lint: reasonbiome(suspicious/noTemplateCurlyInString)
+  'function chooseThemeOnLoad(){let e="starry-night";function t(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}let a=localStorage.getItem("theme-store");if(!a){let l=t();document.documentElement.classList.add(l),document.documentElement.classList.add(`palette-${e}`);return}try{document.documentElement.classList.remove("light","dark"),document.documentElement.classList.remove(...["palette-classic","palette-doom","palette-starry-night","palette-candyland","palette-nature","palette-claude",]);let{state:s}=JSON.parse(a);if(!s){let c=t();document.documentElement.classList.add(c),document.documentElement.classList.add(`palette-${e}`);return}let d=s.theme;d||(d=t()),document.documentElement.classList.add(d),document.documentElement.classList.add(`palette-${s.palette??e}`)}catch(n){let m=t();document.documentElement.classList.add(m),document.documentElement.classList.add(`palette-${e}`)}}chooseThemeOnLoad();';
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <head>
         <script
+          type="text/javascript"
           dangerouslySetInnerHTML={{
-            __html: `(${chooseThemeOnLoad.toString()})()`,
+            // __html: `(${_chooseThemeOnLoad.toString()})()`,
+            __html: chooseThemeOnLoadMinifiedString,
           }}
         />
         <HeadContent />
