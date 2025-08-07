@@ -1,9 +1,9 @@
 import { ShieldCheckIcon } from "lucide-react";
 import { lazy, Suspense } from "react";
 import { cn } from "@/lib/utils";
-import { HeroContextMenu } from "../HeroContextMenu";
 import { BlinkingGridPlaceholder } from "../motion/BlinkingGridPlaceholder";
 import { FlipSentences } from "../motion/FlipSentences";
+import { HeroContextMenu } from "../sub/HeroContextMenu";
 import { SimpleTooltip } from "../ui/tooltip";
 
 const BlinkingGrid = lazy(() => import("../motion/BlinkingGrid"));

@@ -2,11 +2,10 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { MoonStarIcon, PaletteIcon, SunIcon } from "lucide-react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import * as motion from "motion/react-m";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { cn } from "../../lib/utils";
 import { PALETTE, useThemeStore } from "../../stores/theme.store";
 import { PALETTE_SWATCH } from "../../styles/theme";
-import { CommandMenu } from "../CommandMenu";
 import { Logo } from "../icons/Logo";
 import { Button } from "../ui/button";
 import {
@@ -21,6 +20,8 @@ const NAV_ITEMS = [
   { title: "Projects", to: "/", hash: "projects" },
   // { title: "Contact", to: "/", hash: "contact" },
 ];
+
+const LazyCommandMenu = lazy(() => import("../sub/CommandMenu"));
 
 export function Header() {
   const location = useLocation();
@@ -75,7 +76,9 @@ export function Header() {
           <li>
             <ul className="flex items-center gap-2">
               <li>
-                <CommandMenu />
+                <Suspense fallback={<>...</>}>
+                  <LazyCommandMenu />
+                </Suspense>
               </li>
 
               <li className="hidden sm:inline-block">

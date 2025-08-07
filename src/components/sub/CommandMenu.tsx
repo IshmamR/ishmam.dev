@@ -6,17 +6,11 @@ import type { LucideProps } from "lucide-react";
 import {
   BoxIcon,
   BriefcaseBusinessIcon,
-  CircleUserIcon,
   CornerDownLeftIcon,
-  DownloadIcon,
-  FileBadgeIcon,
   LetterTextIcon,
   MoonStarIcon,
   SquareTerminalIcon,
   SunIcon,
-  TriangleDashedIcon,
-  TrophyIcon,
-  TypeIcon,
 } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -30,12 +24,12 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { cn, copyText } from "@/lib/utils";
-import { SOCIAL_LINKS } from "../data";
-import type { TTheme } from "../stores/theme.store";
-import { useThemeStore } from "../stores/theme.store";
-import { Logo } from "./icons/Logo";
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
+import { SOCIAL_LINKS } from "../../data";
+import type { TTheme } from "../../stores/theme.store";
+import { useThemeStore } from "../../stores/theme.store";
+import { Logo } from "../icons/Logo";
+import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
 
 type CommandLinkItem = {
   title: string;
@@ -90,21 +84,21 @@ const PORTFOLIO_PAGE_HASHES: CommandLinkItem[] = [
     href: "/#projects",
     icon: BoxIcon,
   },
-  {
-    title: "Certifications",
-    href: "/#certs",
-    icon: FileBadgeIcon,
-  },
-  {
-    title: "Awards",
-    href: "/#awards",
-    icon: TrophyIcon,
-  },
-  {
-    title: "Download vCard",
-    href: "/vcard",
-    icon: CircleUserIcon,
-  },
+  // {
+  //   title: "Certifications",
+  //   href: "/#certs",
+  //   icon: FileBadgeIcon,
+  // },
+  // {
+  //   title: "Awards",
+  //   href: "/#awards",
+  //   icon: TrophyIcon,
+  // },
+  // {
+  //   title: "Download vCard",
+  //   href: "/vcard",
+  //   icon: CircleUserIcon,
+  // },
 ];
 
 const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
@@ -114,7 +108,7 @@ const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
   openInNewTab: true,
 }));
 
-export function CommandMenu() {
+export default function CommandMenu() {
   const router = useRouter();
 
   const setTheme = useThemeStore((s) => s.setTheme);
@@ -161,7 +155,7 @@ export function CommandMenu() {
     [router],
   );
 
-  const handleCopyText = useCallback((text: string, message: string) => {
+  const _handleCopyText = useCallback((text: string, message: string) => {
     setOpen(false);
     copyText(text);
     toast.success(message);
@@ -283,49 +277,6 @@ export function CommandMenu() {
               Dark
             </CommandItem>
           </CommandGroup>
-
-          <CommandGroup heading="Brand Assets">
-            <CommandItem
-              onSelect={() => {
-                handleCopyText(
-                  "",
-                  // getMarkSVG(resolvedTheme === "light" ? "#000" : "#fff"),
-                  "Copied Mark as SVG",
-                );
-              }}
-            >
-              {/* <ChanhDaiMark /> */}
-              Copy Mark as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => {
-                handleCopyText(
-                  "",
-                  // getWordmarkSVG(resolvedTheme === "light" ? "#000" : "#fff"),
-                  "Copied Logotype as SVG",
-                );
-              }}
-            >
-              <TypeIcon />
-              Copy Logotype as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => handleOpenLink("/blog/chanhdai-brand")}
-            >
-              <TriangleDashedIcon />
-              Brand Guidelines
-            </CommandItem>
-
-            <CommandItem asChild>
-              <a href="https://assets.chanhdai.com/chanhdai-brand.zip" download>
-                <DownloadIcon />
-                Download Brand Assets
-              </a>
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
         </CommandList>
 
         <CommandMenuFooter />
