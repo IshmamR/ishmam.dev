@@ -1,19 +1,15 @@
 @import "tailwindcss" source("../../");
 @import "tw-animate-css";
-@import "./theme.css";
 
 @import "@fontsource-variable/ubuntu-sans-mono";
 @import "@fontsource-variable/roboto";
 
+@import "./theme.css";
+
 @plugin "@tailwindcss/typography";
 
-:root {
-  --d-font-mono: "Ubuntu Sans Mono Variable", monospace;
-  --d-font-sans: "Roboto Variable", sans-serif;
-}
-
 /* Tailwind integration */
-@theme inline {
+@theme static {
   --color-background: var(--d-background);
   --color-foreground: var(--d-foreground);
   --color-card: var(--d-card);
@@ -33,10 +29,10 @@
   --color-border: var(--d-border);
   --color-input: var(--d-input);
   --color-ring: var(--d-ring);
-  --color-edge: color-mix(in oklab, var(--d-border) 75%, var(--d-background));;
+  --color-edge: color-mix(in oklab, var(--d-border) 75%, var(--d-background));
   
-  --color-success: var(--d-success);
-  --color-link: var(--d-link);
+  /* --color-success: var(--d-success);
+  --color-link: var(--d-link); */
 
   --font-sans: var(--d-font-sans);
   --font-mono: var(--d-font-mono);

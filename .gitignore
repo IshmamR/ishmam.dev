@@ -16,7 +16,7 @@ bun-debug.log*
 npm-debug.log*
 
 # Editor configs
-.vscode/
+# .vscode/
 .idea/
 *.suo
 *.njsproj

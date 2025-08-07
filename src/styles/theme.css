@@ -1,5 +1,5 @@
-@variant dark (&:where(.palette-classic.dark *, .palette-doom.dark *, .palette-starry-night.dark *, .palette-candyland.dark *, .palette-claude.dark *, .palette-nature.dark *));
-:root, .light, .palette-classic.light {
+@variant dark (&:where(.palette-classic.dark *));
+:root {
   --d-background: oklch(0.9900 0 0);
   --d-foreground: oklch(0 0 0);
   --d-card: oklch(1 0 0);
@@ -32,9 +32,55 @@
   --d-sidebar-accent-foreground: oklch(0 0 0);
   --d-sidebar-border: oklch(0.9400 0 0);
   --d-sidebar-ring: oklch(0 0 0);
-  /* --d-font-sans: Geist, sans-serif;
-  --d-font-serif: Georgia, serif;
-  --d-font-mono: Geist Mono, monospace; */
+  --d-radius: 0.5rem;
+  --d-shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
+  --d-shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
+  --d-shadow-sm: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 1px 2px -1px hsl(0 0% 0% / 0.18);
+  --d-shadow: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 1px 2px -1px hsl(0 0% 0% / 0.18);
+  --d-shadow-md: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 2px 4px -1px hsl(0 0% 0% / 0.18);
+  --d-shadow-lg: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 4px 6px -1px hsl(0 0% 0% / 0.18);
+  --d-shadow-xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.18), 0px 8px 10px -1px hsl(0 0% 0% / 0.18);
+  --d-shadow-2xl: 0px 1px 2px 0px hsl(0 0% 0% / 0.45);
+  --d-tracking-normal: 0em;
+  --d-spacing: 0.25rem;
+
+  --d-font-mono: "Ubuntu Sans Mono Variable", monospace;
+  --d-font-sans: "Roboto Variable", sans-serif;
+}
+
+.light, .palette-classic.light {
+  --d-background: oklch(0.9900 0 0);
+  --d-foreground: oklch(0 0 0);
+  --d-card: oklch(1 0 0);
+  --d-card-foreground: oklch(0 0 0);
+  --d-popover: oklch(0.9900 0 0);
+  --d-popover-foreground: oklch(0 0 0);
+  --d-primary: oklch(0 0 0);
+  --d-primary-foreground: oklch(1 0 0);
+  --d-secondary: oklch(0.9400 0 0);
+  --d-secondary-foreground: oklch(0 0 0);
+  --d-muted: oklch(0.9700 0 0);
+  --d-muted-foreground: oklch(0.4400 0 0);
+  --d-accent: oklch(0.9400 0 0);
+  --d-accent-foreground: oklch(0 0 0);
+  --d-destructive: oklch(0.6300 0.1900 23.0300);
+  --d-destructive-foreground: oklch(1 0 0);
+  --d-border: oklch(0.9200 0 0);
+  --d-input: oklch(0.9400 0 0);
+  --d-ring: oklch(0 0 0);
+  --d-chart-1: oklch(0.8100 0.1700 75.3500);
+  --d-chart-2: oklch(0.5500 0.2200 264.5300);
+  --d-chart-3: oklch(0.7200 0 0);
+  --d-chart-4: oklch(0.9200 0 0);
+  --d-chart-5: oklch(0.5600 0 0);
+  --d-sidebar: oklch(0.9900 0 0);
+  --d-sidebar-foreground: oklch(0 0 0);
+  --d-sidebar-primary: oklch(0 0 0);
+  --d-sidebar-primary-foreground: oklch(1 0 0);
+  --d-sidebar-accent: oklch(0.9400 0 0);
+  --d-sidebar-accent-foreground: oklch(0 0 0);
+  --d-sidebar-border: oklch(0.9400 0 0);
+  --d-sidebar-ring: oklch(0 0 0);
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
   --d-shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
@@ -80,9 +126,6 @@
   --d-sidebar-accent-foreground: oklch(1 0 0);
   --d-sidebar-border: oklch(0.3200 0 0);
   --d-sidebar-ring: oklch(0.7200 0 0);
-  /* --d-font-sans: Geist, sans-serif;
-  --d-font-serif: Georgia, serif;
-  --d-font-mono: Geist Mono, monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
   --d-shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.09);
@@ -132,9 +175,6 @@
   --d-sidebar-accent-foreground: oklch(1.0000 0 0);
   --d-sidebar-border: oklch(0.4313 0 0);
   --d-sidebar-ring: oklch(0.5016 0.1887 27.4816);
-  /* --d-font-sans: "Oxanium", sans-serif;
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: "Source Code Pro", monospace; */
   --d-radius: 0px;
   --d-shadow-2xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.20);
   --d-shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.20);
@@ -180,9 +220,6 @@
   --d-sidebar-accent-foreground: oklch(0 0 0);
   --d-sidebar-border: oklch(0.4091 0 0);
   --d-sidebar-ring: oklch(0.6083 0.2090 27.0276);
-  /* --d-font-sans: "Oxanium", sans-serif;
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: "Source Code Pro", monospace; */
   --d-radius: 0px;
   --d-shadow-2xs: 0px 2px 5px 0px hsl(0 0% 0% / 0.30);
   --d-shadow-xs: 0px 2px 5px 0px hsl(0 0% 0% / 0.30);
@@ -232,9 +269,6 @@
   --d-sidebar-accent-foreground: oklch(0.2558 0.0433 268.0662);
   --d-sidebar-border: oklch(0.7791 0.0156 251.1926);
   --d-sidebar-ring: oklch(0.8567 0.1164 81.0092);
-  /* --d-font-sans: Libre Baskerville, serif;
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -280,9 +314,6 @@
   --d-sidebar-accent-foreground: oklch(0.2703 0.0407 281.3036);
   --d-sidebar-border: oklch(0.3072 0.0287 281.7681);
   --d-sidebar-ring: oklch(0.9097 0.1440 95.1120);
-  /* --d-font-sans: Libre Baskerville, serif;
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -332,9 +363,6 @@
   --d-sidebar-accent-foreground: oklch(0 0 0);
   --d-sidebar-border: oklch(0.8699 0 0);
   --d-sidebar-ring: oklch(0.8677 0.0735 7.0855);
-  /* --d-font-sans: Poppins, sans-serif;
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: Roboto Mono, monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -380,9 +408,6 @@
   --d-sidebar-accent-foreground: oklch(0 0 0);
   --d-sidebar-border: oklch(0.3867 0 0);
   --d-sidebar-ring: oklch(0.8027 0.1355 349.2347);
-  /* --d-font-sans: Poppins, sans-serif;
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: Roboto Mono, monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -432,9 +457,6 @@
   --d-sidebar-accent-foreground: oklch(0.3250 0 0);
   --d-sidebar-border: oklch(0.9401 0 0);
   --d-sidebar-ring: oklch(0.7731 0 0);
-  /* --d-font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -480,9 +502,6 @@
   --d-sidebar-accent-foreground: oklch(0.8074 0.0142 93.0137);
   --d-sidebar-border: oklch(0.9401 0 0);
   --d-sidebar-ring: oklch(0.7731 0 0);
-  /* --d-font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --d-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --d-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -532,9 +551,6 @@
   --d-sidebar-accent-foreground: oklch(0.4254 0.1159 144.3078);
   --d-sidebar-border: oklch(0.8805 0.0208 74.6428);
   --d-sidebar-ring: oklch(0.5234 0.1347 144.1672);
-  /* --d-font-sans: Montserrat, sans-serif;
-  --d-font-serif: Merriweather, serif;
-  --d-font-mono: Source Code Pro, monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -580,9 +596,6 @@
   --d-sidebar-accent-foreground: oklch(0.9423 0.0097 72.6595);
   --d-sidebar-border: oklch(0.3942 0.0265 142.9926);
   --d-sidebar-ring: oklch(0.6731 0.1624 144.2083);
-  /* --d-font-sans: Montserrat, sans-serif;
-  --d-font-serif: Merriweather, serif;
-  --d-font-mono: Source Code Pro, monospace; */
   --d-radius: 0.5rem;
   --d-shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --d-shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);

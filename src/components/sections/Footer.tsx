@@ -3,7 +3,7 @@ import { cn } from "../../lib/utils";
 
 export function Footer() {
   return (
-    <footer className="max-w-screen overflow-x-hidden px-2">
+    <footer className="max-w-screen overflow-x-hidden px-4">
       <div className="screen-line-before border-edge mx-auto max-w-[1024px] border-x pt-4">
         <p className="text-muted-foreground mb-1 px-4 text-center font-mono text-sm text-balance">
           Inspired by tailwindcss.com, chanhdai.com, and ui.shadcn.com

@@ -7,10 +7,16 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { LazyMotion } from "motion/react";
 import type { ReactNode } from "react";
+import { lazy, Suspense } from "react";
 import globalCss from "@/styles/global.css?url";
 import { Footer } from "../components/sections/Footer";
 import { Header } from "../components/sections/Header";
+
+const loadFeatures = () => import("motion/react").then((res) => res.domMax);
+
+const LazyScrollTop = lazy(() => import("../components/motion/ScrollTop"));
 
 export const Route = createRootRoute({
   head: () => ({
@@ -49,58 +55,46 @@ function _chooseThemeOnLoad() {
     "palette-claude",
   ];
 
-  const defaultPalette = "starry-night";
-
   function getSystemTheme() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
   }
 
-  const themeStore = localStorage.getItem("theme-store");
-  if (!themeStore) {
-    const theme = getSystemTheme();
-    document.documentElement.classList.add(theme);
-    document.documentElement.classList.add(`palette-${defaultPalette}`);
-    return;
-  }
+  let theme = getSystemTheme();
+  let palette = "starry-night";
 
   try {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.remove(...palettesClasses);
 
-    const { state } = JSON.parse(themeStore);
-    if (!state) {
-      const theme = getSystemTheme();
-      document.documentElement.classList.add(theme);
-      document.documentElement.classList.add(`palette-${defaultPalette}`);
-      return;
+    const themeStore = localStorage.getItem("theme-store");
+    if (themeStore) {
+      const { state } = JSON.parse(themeStore);
+      if (state) {
+        if (state.theme) theme = state.theme;
+        if (state.palette) palette = state.palette;
+      }
     }
-
-    let theme = state.theme;
-    if (!theme) {
-      theme = getSystemTheme();
-    }
-
-    document.documentElement.classList.add(theme);
-    document.documentElement.classList.add(
-      `palette-${state.palette ?? defaultPalette}`,
-    );
   } catch (_) {
-    const theme = getSystemTheme();
+  } finally {
     document.documentElement.classList.add(theme);
-    document.documentElement.classList.add(`palette-${defaultPalette}`);
+    document.documentElement.classList.add(`palette-${palette}`);
+  }
+
+  if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+    document.documentElement.classList.add("os-macos");
   }
 }
 
 // Minified, so we load a tiny bit faster
 const chooseThemeOnLoadMinifiedString =
   // biome-ignore lint: reasonbiome(suspicious/noTemplateCurlyInString)
-  'function chooseThemeOnLoad(){let e="starry-night";function t(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}let a=localStorage.getItem("theme-store");if(!a){let l=t();document.documentElement.classList.add(l),document.documentElement.classList.add(`palette-${e}`);return}try{document.documentElement.classList.remove("light","dark"),document.documentElement.classList.remove(...["palette-classic","palette-doom","palette-starry-night","palette-candyland","palette-nature","palette-claude",]);let{state:s}=JSON.parse(a);if(!s){let c=t();document.documentElement.classList.add(c),document.documentElement.classList.add(`palette-${e}`);return}let d=s.theme;d||(d=t()),document.documentElement.classList.add(d),document.documentElement.classList.add(`palette-${s.palette??e}`)}catch(n){let m=t();document.documentElement.classList.add(m),document.documentElement.classList.add(`palette-${e}`)}}chooseThemeOnLoad();';
+  'function ctol(){let e=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",t="starry-night";try{document.documentElement.classList.remove("light","dark"),document.documentElement.classList.remove(...["palette-classic","palette-doom","palette-starry-night","palette-candyland","palette-nature","palette-claude",]);let a=localStorage.getItem("theme-store");if(a){let{state:l}=JSON.parse(a);l&&(l.theme&&(e=l.theme),l.palette&&(t=l.palette))}}catch(s){}finally{document.documentElement.classList.add(e),document.documentElement.classList.add(`palette-${t}`)}/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)&&document.documentElement.classList.add("os-macos")}ctol();';
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="text/javascript"
@@ -113,9 +107,14 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
 
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <LazyMotion features={loadFeatures} strict>
+          <Header />
+          <main>{children}</main>
+          <Suspense fallback={null}>
+            <LazyScrollTop />
+          </Suspense>
+          <Footer />
+        </LazyMotion>
 
         <Scripts />
 

@@ -126,7 +126,7 @@ export default function BlinkingGrid() {
           >
             {cells.map((row) => (
               <div
-                key={row.toString()}
+                key={`grid-blinking-${row}`}
                 className="flex size-full items-center justify-center"
               >
                 <div
@@ -135,7 +135,9 @@ export default function BlinkingGrid() {
                     "pointer-events-none flex items-center justify-center",
                     glowers.includes(row) && "text-secondary duration-1024",
                     initialsCells.includes(row) &&
-                      "bg-primary pointer-events-auto z-10 size-full! duration-100 hover:cursor-pointer hover:opacity-80 sm:-translate-[14px]",
+                      "bg-primary pointer-events-auto z-10 size-full! duration-100 hover:cursor-pointer hover:opacity-80",
+                    initialsCells.includes(row) &&
+                      "-translate-[9px] sm:-translate-[14px]",
                   )}
                 >
                   {!initialsCells.includes(row) ? (

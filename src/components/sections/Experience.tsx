@@ -154,7 +154,7 @@ export function ExperienceSection() {
 
                 {org.isCurrent ? (
                   <span className="relative flex items-center justify-center">
-                    <span className="bg-success absolute inline-flex size-3 animate-ping rounded-full opacity-50" />
+                    <span className="bg-success absolute inline-flex size-3 rounded-full opacity-50 motion-safe:animate-ping" />
                     <span className="bg-success relative inline-flex size-2 rounded-full" />
                     <span className="sr-only">Current Employer</span>
                   </span>

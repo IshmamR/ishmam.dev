@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { MoonStarIcon, PaletteIcon, SunIcon } from "lucide-react";
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
+import * as motion from "motion/react-m";
 import { useState } from "react";
 import { cn } from "../../lib/utils";
 import { PALETTE, useThemeStore } from "../../stores/theme.store";
@@ -11,8 +12,15 @@ import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+
+const NAV_ITEMS = [
+  { title: "Ishmam", to: "/" },
+  { title: "Projects", to: "/", hash: "projects" },
+  // { title: "Contact", to: "/", hash: "contact" },
+];
 
 export function Header() {
   const location = useLocation();
@@ -45,49 +53,32 @@ export function Header() {
           </Link>
         </motion.div>
 
-        <ul className="flex items-center gap-4 max-sm:hidden">
-          <li>
-            <Link
-              to="/"
-              className={cn(
-                "text-muted-foreground font-mono text-sm font-medium transition-all duration-300",
-                location.pathname === "/" && "text-foreground",
-              )}
-            >
-              Ishmam
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/"
-              hash="projects"
-              className={cn(
-                "text-muted-foreground font-mono text-sm font-medium transition-all duration-300",
-                location.pathname === "/#projects" && "text-foreground",
-              )}
-            >
-              Projects
-            </Link>
-          </li>
-          {/* <li>
-            <Link
-              to="/"
-              className={cn(
-                "font-mono text-sm font-medium text-muted-foreground transition-all duration-300",
-                location.pathname === "/stats" && "text-foreground"
-              )}
-            >
-              Stats
-            </Link>
-          </li> */}
+        <ul className="flex items-center gap-4">
+          {NAV_ITEMS.map((item) => (
+            <li key={item.title + item.to}>
+              <Link
+                to={item.to}
+                hash={item.hash}
+                className={cn(
+                  "text-muted-foreground font-mono text-sm font-medium transition-all duration-300",
+                  location.pathname === item.to &&
+                    (item.hash ? location.hash === item.hash : true) &&
+                    "text-foreground",
+                  "max-sm:hidden",
+                )}
+              >
+                {item.title}
+              </Link>
+            </li>
+          ))}
 
           <li>
-            <ul className="flex items-center gap-2 max-sm:hidden">
+            <ul className="flex items-center gap-2">
               <li>
                 <CommandMenu />
               </li>
 
-              <li>
+              <li className="hidden sm:inline-block">
                 <Button
                   variant="outline"
                   size="icon"
@@ -201,6 +192,39 @@ export function Header() {
                   <SunIcon className="hidden [html.light_&]:block" />
                   <span className="sr-only">Toggle Theme</span>
                 </Button>
+              </li>
+
+              <li className="sm:hidden">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="group/toggle flex flex-col gap-1 rounded-full"
+                      size="icon"
+                    >
+                      <span className="bg-foreground flex h-0.5 w-4 transform rounded-[1px] transition-transform group-data-[state=open]/toggle:translate-y-[3px] group-data-[state=open]/toggle:rotate-45" />
+                      <span className="bg-foreground flex h-0.5 w-4 transform rounded-[1px] transition-transform group-data-[state=open]/toggle:translate-y-[-3px] group-data-[state=open]/toggle:-rotate-45" />
+                      <span className="sr-only">Toggle Menu</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent
+                    className="w-64"
+                    align="end"
+                    sideOffset={8}
+                  >
+                    {NAV_ITEMS.map((item) => (
+                      <DropdownMenuItem
+                        key={`mobile-${item.to}${item.hash}`}
+                        asChild
+                      >
+                        <Link to={item.to} hash={item.hash}>
+                          {item.title}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </li>
             </ul>
           </li>
