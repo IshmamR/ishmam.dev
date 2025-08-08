@@ -1,4 +1,3 @@
-import { RssIcon } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 export function Footer() {
@@ -6,7 +5,7 @@ export function Footer() {
     <footer className="max-w-screen overflow-x-hidden px-4">
       <div className="screen-line-before border-edge mx-auto max-w-[1024px] border-x pt-4">
         <p className="text-muted-foreground mb-1 px-4 text-center font-mono text-sm text-balance">
-          Inspired by tailwindcss.com, chanhdai.com, and ui.shadcn.com
+          Inspired by tailwindcss.com, and chanhdai.com
         </p>
 
         <p className="text-muted-foreground mb-4 px-4 text-center font-mono text-sm text-balance">
@@ -49,7 +48,7 @@ export function Footer() {
 
             {/* <Separator /> */}
 
-            <a
+            {/* <a
               className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
               href={`/rss`}
               target="_blank"
@@ -57,7 +56,7 @@ export function Footer() {
             >
               <RssIcon className="size-4" />
               <span className="sr-only">RSS</span>
-            </a>
+            </a> */}
 
             {/* <Separator /> */}
           </div>

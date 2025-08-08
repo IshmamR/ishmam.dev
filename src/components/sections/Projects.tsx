@@ -33,7 +33,7 @@ export function ProjectItem({
               alt={project.title}
               width={32}
               height={32}
-              className="mx-4 flex size-6 shrink-0"
+              className="border-edge border-0.5 mx-4 flex size-6 shrink-0"
               aria-hidden="true"
             />
           ) : (

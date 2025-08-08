@@ -15,6 +15,7 @@ export default defineConfig({
       pages: [
         { path: "/", prerender: { enabled: true, outputPath: "/index.html" } },
       ],
+      sitemap: { host: "https://ishmam.dev" },
     }),
     viteReact(),
   ],

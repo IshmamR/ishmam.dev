@@ -8,56 +8,70 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as ThemeDemoRouteImport } from './routes/theme-demo'
-import { Route as IndexRouteImport } from './routes/index'
+import { createServerRootRoute } from '@tanstack/react-start/server'
 
-const ThemeDemoRoute = ThemeDemoRouteImport.update({
-  id: '/theme-demo',
-  path: '/theme-demo',
-  getParentRoute: () => rootRouteImport,
-} as any)
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { ServerRoute as LlmsDottxtServerRouteImport } from './routes/llms[.]txt'
+
+const rootServerRouteImport = createServerRootRoute()
+
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LlmsDottxtServerRoute = LlmsDottxtServerRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootServerRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/theme-demo': typeof ThemeDemoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/theme-demo': typeof ThemeDemoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/theme-demo': typeof ThemeDemoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/theme-demo'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/theme-demo'
-  id: '__root__' | '/' | '/theme-demo'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ThemeDemoRoute: typeof ThemeDemoRoute
+}
+export interface FileServerRoutesByFullPath {
+  '/llms.txt': typeof LlmsDottxtServerRoute
+}
+export interface FileServerRoutesByTo {
+  '/llms.txt': typeof LlmsDottxtServerRoute
+}
+export interface FileServerRoutesById {
+  __root__: typeof rootServerRouteImport
+  '/llms.txt': typeof LlmsDottxtServerRoute
+}
+export interface FileServerRouteTypes {
+  fileServerRoutesByFullPath: FileServerRoutesByFullPath
+  fullPaths: '/llms.txt'
+  fileServerRoutesByTo: FileServerRoutesByTo
+  to: '/llms.txt'
+  id: '__root__' | '/llms.txt'
+  fileServerRoutesById: FileServerRoutesById
+}
+export interface RootServerRouteChildren {
+  LlmsDottxtServerRoute: typeof LlmsDottxtServerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/theme-demo': {
-      id: '/theme-demo'
-      path: '/theme-demo'
-      fullPath: '/theme-demo'
-      preLoaderRoute: typeof ThemeDemoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -67,11 +81,27 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+declare module '@tanstack/react-start/server' {
+  interface ServerFileRoutesByPath {
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtServerRouteImport
+      parentRoute: typeof rootServerRouteImport
+    }
+  }
+}
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ThemeDemoRoute: ThemeDemoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+const rootServerRouteChildren: RootServerRouteChildren = {
+  LlmsDottxtServerRoute: LlmsDottxtServerRoute,
+}
+export const serverRouteTree = rootServerRouteImport
+  ._addFileChildren(rootServerRouteChildren)
+  ._addFileTypes<FileServerRouteTypes>()

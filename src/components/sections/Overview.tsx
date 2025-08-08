@@ -144,7 +144,7 @@ export function OverviewSection() {
           <IntroItem
             type="phone"
             tel="+8801405274359"
-            title="+880 1405274359"
+            title="Available on request"
           />
           <IntroItem
             type="custom"

@@ -214,10 +214,32 @@ export const EXPERIENCES: TExperience[] = [
           start: "07.2024",
         },
         employmentType: "Full time",
-        description: `I code stuff. Sometimes I think about what to code. But mainly, I just code.`,
+        description: `Me architect and ship E2E cloud, edge device. Me connect dots, me make all talk.
+
+##### What I have done  
+- Craft **micro-services**. Spin up event pipelines. Handle big load, stay smooth
+- Train, prune, deploy **deep-learning models**. Cloud smart. Cloud scale.
+- Build **React / Next.js** front-ends. Instant feel. **SSR**, **ISR**, smart cache. SEO strong.
+- Write firmware. FreeRTOS, ESP32, MQTT, OTA. Machines alive, machines run 24/7.
+- Ship mobile apps. **React Native**, **BLE** pair. Hardware config. Sync to server.
+- Guard every layer. Logs, metrics, fallbacks. User see magic, user feel smooth. No trouble, no mess.
+- Me do more: architect DBs, design APIs, set up projects, run CI/CD, manage cloud.
+
+##### Current focus
+Turn [Diva](https://diva.com.bd) IoT vending network offline-first. Rural stays up, no net needed. Build sync engine for Diva. Sync engine be state-of-the-art.
+
+Problem jump domains — concept, hardware, UI — me bridge gap. Me make it work.`,
         skills: [
           { title: "Typescript", iconSlug: "ts" },
+          { title: "Node.js", iconSlug: "nodejs" },
           { title: "React", iconSlug: "react" },
+          { title: "MongoDB", iconSlug: "mongodb" },
+          { title: "Nextjs", iconSlug: "nextjs-dark" },
+          { title: "React Navigation", iconSlug: "react-navigation" },
+          { title: "Embedded", iconSlug: "cpp" },
+          { title: "Bun", iconSlug: "bun" },
+          { title: "Hono", iconSlug: "hono" },
+          { title: "TailwindCSS", iconSlug: "tailwindcss" },
         ],
         icon: CodeXmlIcon,
         defaultExpanded: true,
@@ -230,10 +252,22 @@ export const EXPERIENCES: TExperience[] = [
           end: "06.2024",
         },
         employmentType: "Part time",
-        description: `I coded.`,
+        description: `Me code, me build dashboards. User see more, user know more.
+- Work ***MERN*** stack. Dozen+ projects, all shapes, all sizes.
+- Build mobile app with ***React Native***. Cross-platform, smooth feel.
+- Team up with UX/UI. Pixel perfect, user happy.
+- Connect front to back. Features flow, no hiccup.
+- Ship AI to prod. Models run, workflows smart.
+
+Me learn fast, ship faster. Me code, me study(sometimes). Balance both (not really), level up fast.`,
         skills: [
           { title: "Typescript", iconSlug: "ts" },
+          { title: "Node.js", iconSlug: "nodejs" },
           { title: "React", iconSlug: "react" },
+          { title: "React Native", iconSlug: "react" },
+          { title: "MongoDB", iconSlug: "mongodb" },
+          { title: "Nextjs", iconSlug: "nextjs-dark" },
+          { title: "Ant design", iconSlug: "antd" },
         ],
         icon: CodeXmlIcon,
         defaultExpanded: false,
@@ -251,6 +285,14 @@ export const EXPERIENCES: TExperience[] = [
         employmentPeriod: { start: "06.2020", end: "05.2021" },
         employmentType: "Part time",
         icon: GlobeIcon,
+        skills: [
+          { title: "Javascript", iconSlug: "js" },
+          { title: "Typescript", iconSlug: "ts" },
+          { title: "Node.js", iconSlug: "nodejs" },
+          { title: "React", iconSlug: "react" },
+          { title: "MongoDB", iconSlug: "mongodb" },
+          { title: "TailwindCSS", iconSlug: "tailwindcss" },
+        ],
       },
     ],
     isCurrent: false,
@@ -280,17 +322,42 @@ export const PROJECTS: TProject[] = [
     skills: [
       { title: "Tanstack Start", iconSlug: "tanstack" },
       { title: "Tailwind CSS", iconSlug: "tailwindcss" },
+      { title: "Shadcn/UI", iconSlug: "shadcn-ui-light" },
+      { title: "Bun", iconSlug: "bun" },
+    ],
+    isExpanded: true,
+    description: "",
+    slug: "ishmam.dev",
+  },
+  {
+    id: "terminal.pong",
+    title: "Terminal Pong",
+    link: "https://github.com/IshmamR/terminal.pong",
+    period: { start: "06.2025", end: "07.2025" },
+    skills: [
+      { title: "Rust", iconSlug: "cuddlyferris" },
+      { title: "Ratatui", iconSlug: "ratatui" },
     ],
     isExpanded: false,
     description: "",
+    slug: "terminal.pong",
   },
   {
     id: "staging.headless.ltd",
     title: "Headless Technologies LTD.",
     link: "https://staging.headless.ltd",
     period: { start: "12.2024", end: "04.2025" },
-    skills: [],
+    skills: [
+      { title: "Nextjs", iconSlug: "nextjs-dark" },
+      { title: "React", iconSlug: "react" },
+      { title: "TailwindCSS", iconSlug: "tailwindcss" },
+      { title: "MongoDB", iconSlug: "mongodb" },
+      { title: "Typescript", iconSlug: "ts" },
+      { title: "SSR" },
+      { title: "Server functions" },
+    ],
     isExpanded: false,
     description: "",
+    slug: "headless",
   },
 ];
