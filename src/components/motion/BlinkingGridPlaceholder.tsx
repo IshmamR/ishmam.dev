@@ -16,19 +16,10 @@ export function BlinkingGridPlaceholder() {
           {Array.from({ length: 360 }, (_, i) => i).map((item) => (
             <div
               key={`grid-placeholder-${item}`}
-              className="text-edge flex size-[18px] items-center justify-center sm:size-[28px]"
+              className="blinking-grid-placeholder"
+              aria-hidden="true"
             >
-              <svg
-                width="5"
-                height="5"
-                viewBox="0 0 5 5"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>corners</title>
-                <rect x="2" width="1" height="5" fill="currentColor" />
-                <rect y="2" width="5" height="1" fill="currentColor" />
-              </svg>
+              <div className="cell-placeholder" />
             </div>
           ))}
         </div>

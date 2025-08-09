@@ -1,0 +1,31 @@
+@import "tailwindcss" source("../../");
+
+@layer components {
+  .blinking_grid_cell {
+    @apply flex size-full items-center justify-center;
+  }
+
+  .cell_container {
+    @apply flex items-center justify-center pointer-events-none transition-all ease-in-out;
+    color: var(--color-edge);
+  }
+
+  .cell_container--glowing {
+    @apply duration-1024;
+    color: var(--color-secondary);
+  }
+
+  .cell_container--initial {
+    @apply pointer-events-auto z-10 !size-full duration-100 hover:cursor-pointer hover:opacity-80 -translate-x-[9px] sm:-translate-x-[14px];
+    background-color: var(--color-primary);
+  }
+
+  /* Placeholders come with the first html load. So we should make it as small as possible with reusable single classes */
+  .blinking-grid-placeholder {
+    @apply flex size-[18px] items-center justify-center sm:size-[28px];
+    color: var(--color-edge);
+  }
+  .cell-placeholder {
+    @apply relative h-[5px] w-[5px] before:absolute before:top-0 before:left-1/2 before:h-full before:w-px before:-translate-x-1/2 before:bg-current after:absolute after:top-1/2 after:left-0 after:h-px after:w-full after:-translate-y-1/2 after:bg-current;
+  }
+}

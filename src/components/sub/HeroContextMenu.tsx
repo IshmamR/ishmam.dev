@@ -1,5 +1,4 @@
 import { DownloadIcon } from "lucide-react";
-import { downloadElementAsImage } from "../../lib/utils";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -15,7 +14,9 @@ export function HeroContextMenu({ children }: { children: React.ReactNode }) {
       <ContextMenuContent className="w-auto">
         <ContextMenuItem
           onClick={() => {
-            downloadElementAsImage("blinking_grid");
+            import("../../lib/utils").then((utils) => {
+              utils.downloadElementAsImage("blinking_grid");
+            });
           }}
         >
           <DownloadIcon />

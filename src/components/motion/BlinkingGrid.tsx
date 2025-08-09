@@ -125,19 +125,12 @@ export default function BlinkingGrid() {
             }}
           >
             {cells.map((row) => (
-              <div
-                key={`grid-blinking-${row}`}
-                className="flex size-full items-center justify-center"
-              >
+              <div key={`grid-blinking-${row}`} className="blinking_grid_cell">
                 <div
                   className={cn(
-                    "text-edge transition-all ease-in-out",
-                    "pointer-events-none flex items-center justify-center",
-                    glowers.includes(row) && "text-secondary duration-1024",
-                    initialsCells.includes(row) &&
-                      "bg-primary pointer-events-auto z-10 size-full! duration-100 hover:cursor-pointer hover:opacity-80",
-                    initialsCells.includes(row) &&
-                      "-translate-[9px] sm:-translate-[14px]",
+                    "cell_container",
+                    glowers.includes(row) && "cell_container--glowing",
+                    initialsCells.includes(row) && "cell_container--initial",
                   )}
                 >
                   {!initialsCells.includes(row) ? (
@@ -147,8 +140,8 @@ export default function BlinkingGrid() {
                       viewBox="0 0 5 5"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
                     >
-                      <title>corners</title>
                       <rect x="2" width="1" height="5" fill="currentColor" />
                       <rect y="2" width="5" height="1" fill="currentColor" />
                     </svg>
@@ -162,19 +155,10 @@ export default function BlinkingGrid() {
             {Array.from({ length: 360 }, (_, i) => i).map((item) => (
               <div
                 key={`grid-placeholder-${item}`}
-                className="text-edge flex size-[18px] items-center justify-center sm:size-[28px]"
+                className="blinking-grid-placeholder"
+                aria-hidden="true"
               >
-                <svg
-                  width="5"
-                  height="5"
-                  viewBox="0 0 5 5"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>corners</title>
-                  <rect x="2" width="1" height="5" fill="currentColor" />
-                  <rect y="2" width="5" height="1" fill="currentColor" />
-                </svg>
+                <div className="cell-placeholder" />
               </div>
             ))}
           </div>

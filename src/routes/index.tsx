@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import indexCss from "@/styles/index.css?url";
 import { AboutSection } from "../components/sections/About";
 import { ExperienceSection } from "../components/sections/Experience";
 import { HeroSection } from "../components/sections/Hero";
@@ -10,6 +11,9 @@ import { TechStackSection } from "../components/sections/TechStack";
 
 export const Route = createFileRoute("/")({
   component: Home,
+  head: () => ({
+    links: [{ rel: "stylesheet", href: indexCss }],
+  }),
 });
 
 function Home() {

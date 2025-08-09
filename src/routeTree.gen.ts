@@ -13,6 +13,7 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { ServerRoute as LlmsDottxtServerRouteImport } from './routes/llms[.]txt'
+import { ServerRoute as ApiVisitorServerRouteImport } from './routes/api/visitor'
 
 const rootServerRouteImport = createServerRootRoute()
 
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const LlmsDottxtServerRoute = LlmsDottxtServerRouteImport.update({
   id: '/llms.txt',
   path: '/llms.txt',
+  getParentRoute: () => rootServerRouteImport,
+} as any)
+const ApiVisitorServerRoute = ApiVisitorServerRouteImport.update({
+  id: '/api/visitor',
+  path: '/api/visitor',
   getParentRoute: () => rootServerRouteImport,
 } as any)
 
@@ -50,24 +56,28 @@ export interface RootRouteChildren {
 }
 export interface FileServerRoutesByFullPath {
   '/llms.txt': typeof LlmsDottxtServerRoute
+  '/api/visitor': typeof ApiVisitorServerRoute
 }
 export interface FileServerRoutesByTo {
   '/llms.txt': typeof LlmsDottxtServerRoute
+  '/api/visitor': typeof ApiVisitorServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
   '/llms.txt': typeof LlmsDottxtServerRoute
+  '/api/visitor': typeof ApiVisitorServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/llms.txt'
+  fullPaths: '/llms.txt' | '/api/visitor'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/llms.txt'
-  id: '__root__' | '/llms.txt'
+  to: '/llms.txt' | '/api/visitor'
+  id: '__root__' | '/llms.txt' | '/api/visitor'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
   LlmsDottxtServerRoute: typeof LlmsDottxtServerRoute
+  ApiVisitorServerRoute: typeof ApiVisitorServerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -90,6 +100,13 @@ declare module '@tanstack/react-start/server' {
       preLoaderRoute: typeof LlmsDottxtServerRouteImport
       parentRoute: typeof rootServerRouteImport
     }
+    '/api/visitor': {
+      id: '/api/visitor'
+      path: '/api/visitor'
+      fullPath: '/api/visitor'
+      preLoaderRoute: typeof ApiVisitorServerRouteImport
+      parentRoute: typeof rootServerRouteImport
+    }
   }
 }
 
@@ -101,6 +118,7 @@ export const routeTree = rootRouteImport
   ._addFileTypes<FileRouteTypes>()
 const rootServerRouteChildren: RootServerRouteChildren = {
   LlmsDottxtServerRoute: LlmsDottxtServerRoute,
+  ApiVisitorServerRoute: ApiVisitorServerRoute,
 }
 export const serverRouteTree = rootServerRouteImport
   ._addFileChildren(rootServerRouteChildren)
