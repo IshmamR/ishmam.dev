@@ -20,6 +20,7 @@ export default defineConfig({
     viteReact(),
   ],
   build: {
+    cssMinify: "lightningcss",
     rollupOptions: {
       output: {
         manualChunks: {
