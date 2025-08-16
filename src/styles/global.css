@@ -30,7 +30,7 @@
   --color-input: var(--d-input);
   --color-ring: var(--d-ring);
   --color-edge: color-mix(in oklab, var(--d-border) 75%, var(--d-background));
-  
+
   /* --color-success: var(--d-success);
   --color-link: var(--d-link); */
 
@@ -63,7 +63,7 @@
   }
 
   body {
-    @apply overscroll-y-none bg-background font-sans text-foreground antialiased;
+    @apply bg-background text-foreground overscroll-y-none font-sans antialiased;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
@@ -89,17 +89,21 @@
   }
 }
 
-
 @utility link {
   @apply font-medium underline underline-offset-4;
 }
 
 @utility screen-line-before {
-  @apply relative before:absolute before:top-0 before:-left-[100vw] before:-z-1 before:h-px before:w-[200vw] before:bg-edge;
+  @apply before:bg-edge relative before:absolute before:top-0 before:-left-[100vw] before:-z-1 before:h-px before:w-[200vw];
 }
 
 @utility screen-line-after {
-  @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge;
+  @apply after:bg-edge relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw];
+}
+
+@utility client_cursor_div {
+  @apply pointer-events-none absolute flex size-3 -translate-1/2 items-center justify-center rounded-full border-[2px] border-amber-50 bg-amber-400 text-base font-bold text-white;
+  @apply transition-all duration-75 ease-out;
 }
 
 .prose blockquote p::before,

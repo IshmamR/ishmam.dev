@@ -5,6 +5,7 @@ export function SeparatorPattern() {
     <div className="border-edge [&_*]:border-edge overflow-clip px-4">
       <div
         className={cn(
+          "separator_pattern",
           "mx-auto bg-transparent",
           "border-edge relative flex h-8 max-w-[1024px] border-x",
           "before:absolute before:-left-[100vw] before:-z-1 before:h-8 before:w-[200vw]",

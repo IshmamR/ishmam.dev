@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import indexCss from "@/styles/index.css?url";
 import { AboutSection } from "../components/sections/About";
 import { ExperienceSection } from "../components/sections/Experience";
@@ -8,6 +9,10 @@ import { ProjectsSection } from "../components/sections/Projects";
 import { SeparatorPattern } from "../components/sections/SeparatorPattern";
 import { SocialLinksSection } from "../components/sections/SocialLinks";
 import { TechStackSection } from "../components/sections/TechStack";
+
+const LazyCursorOverlay = lazy(
+  () => import("../components/HOC/CursorsOverlay"),
+);
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -19,6 +24,10 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
+      <Suspense fallback={null}>
+        <LazyCursorOverlay />
+      </Suspense>
+
       <HeroSection />
       <SeparatorPattern />
 
