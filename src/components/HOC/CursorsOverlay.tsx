@@ -38,34 +38,39 @@ export default function CursorsOverlay() {
 
       const countryCode = alpha2FromCountryId(countryCodeId);
 
-      if (ev.data.byteLength === 6) {
-        if (msgType === MSG_TYPE.CLIENT_CONNECTED) {
-          // console.log("Client connected. Client Id:", clientId);
+      if (ev.data.byteLength === 6 && msgType === MSG_TYPE.CLIENT_CONNECTED) {
+        // console.log("Client connected. Client Id:", clientId);
 
-          const cursorDiv = document.createElement("div");
-          cursorDiv.classList.add("client_cursor_div");
-          cursorsOverlayRef.current.appendChild(cursorDiv);
-          cursorsMap.current.set(clientId, cursorDiv);
+        const cursorDiv = document.createElement("div");
+        cursorDiv.classList.add("client_cursor_div");
+        cursorsOverlayRef.current.appendChild(cursorDiv);
+        cursorsMap.current.set(clientId, cursorDiv);
 
-          // add an img tag to it
-          const countryImgTag = document.createElement("img");
-          countryImgTag.width = 64;
-          countryImgTag.height = 48;
-          countryImgTag.classList.add("cursor_country_img");
-          countryImgTag.src = countryCode
-            ? `https://cdn.ipwhois.io/flags/${countryCode.toLowerCase()}.svg`
-            : "/assets/companies/electrode.webp";
-          cursorDiv.appendChild(countryImgTag);
-        } else if (msgType === MSG_TYPE.CLIENT_DISCONNECTED) {
-          // console.log("Client disconnected. Client Id:", clientId);
+        // add an img tag to it
+        const countryImgTag = document.createElement("img");
+        countryImgTag.width = 64;
+        countryImgTag.height = 48;
+        countryImgTag.classList.add("cursor_country_img");
+        countryImgTag.src = countryCode
+          ? `https://cdn.ipwhois.io/flags/${countryCode.toLowerCase()}.svg`
+          : "/assets/companies/electrode.webp";
+        cursorDiv.appendChild(countryImgTag);
+        return;
+      }
 
-          const cursorDiv = cursorsMap.current.get(clientId);
-          if (!cursorDiv) return;
-          const imgTag = cursorDiv.querySelector("img.cursor_country_img");
-          if (imgTag) cursorDiv.removeChild(imgTag);
-          cursorsOverlayRef.current.removeChild(cursorDiv);
-          cursorsMap.current.delete(clientId);
-        }
+      if (
+        ev.data.byteLength === 5 &&
+        msgType === MSG_TYPE.CLIENT_DISCONNECTED
+      ) {
+        // console.log("Client disconnected. Client Id:", clientId);
+
+        const cursorDiv = cursorsMap.current.get(clientId);
+        if (!cursorDiv) return;
+        const imgTag = cursorDiv.querySelector("img.cursor_country_img");
+        if (imgTag) cursorDiv.removeChild(imgTag);
+        cursorsOverlayRef.current.removeChild(cursorDiv);
+        cursorsMap.current.delete(clientId);
+
         return;
       }
 
