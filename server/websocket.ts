@@ -30,6 +30,18 @@ const MSG_TYPE = {
 serve<WsData, never>({
   port: process.env.WS_PORT ? parseInt(process.env.WS_PORT) : 9000,
   fetch: async (req, server) => {
+    // Validate origin for CORS
+    const origin = req.headers.get("origin");
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "https://ishmam.dev",
+      "https://www.ishmam.dev",
+    ];
+
+    if (origin && !allowedOrigins.includes(origin)) {
+      return new Response("Forbidden - Invalid origin", { status: 403 });
+    }
+
     const ip = server.requestIP(req);
     if (!ip) return new Response("Upgrade failed", { status: 500 });
 
