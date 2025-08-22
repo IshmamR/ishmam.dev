@@ -27,10 +27,25 @@ const MSG_TYPE = {
 // const msgTypes = Object.values(MSG_TYPE);
 // type TMsgType = (typeof msgTypes)[number];
 
+const getRealIP = (req: Request, server: Bun.Server) => {
+  const xForwardedFor = req.headers.get("x-forwarded-for");
+  const xRealIP = req.headers.get("x-real-ip");
+  const cfConnectingIP = req.headers.get("cf-connecting-ip"); // Cloudflare
+
+  if (cfConnectingIP) return cfConnectingIP;
+  if (xRealIP) return xRealIP;
+  if (xForwardedFor) {
+    // X-Forwarded-For can be a comma-separated list, take the first (original client)
+    return xForwardedFor.split(",")[0].trim();
+  }
+
+  const ip = server.requestIP(req);
+  return ip?.address || "unknown";
+};
+
 serve<WsData, never>({
   port: process.env.WS_PORT ? parseInt(process.env.WS_PORT) : 9000,
   fetch: async (req, server) => {
-    // Validate origin for CORS
     const origin = req.headers.get("origin");
     const allowedOrigins = [
       "http://localhost:3000",
@@ -42,15 +57,14 @@ serve<WsData, never>({
       return new Response("Forbidden - Invalid origin", { status: 403 });
     }
 
-    const ip = server.requestIP(req);
-    if (!ip) return new Response("Upgrade failed", { status: 500 });
+    const clientIP = getRealIP(req, server);
+    console.log("Real client IP:", clientIP);
 
     try {
-      const response = await fetch(`http://ipwho.is/${ip.address}`);
+      const response = await fetch(`http://ipwho.is/${clientIP}`);
       const data = (await response.json()) as TIpWhoisResponse;
-      console.log(data);
       const wsData: WsData = {
-        ipAddress: ip.address,
+        ipAddress: clientIP,
         clientId: -1,
         countryCode: data.country_code as CountryAlpha2,
         createdAt: new Date(),
