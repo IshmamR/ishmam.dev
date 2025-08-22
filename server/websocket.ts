@@ -1,10 +1,16 @@
 /** biome-ignore-all lint/suspicious/noConsole: emni */
 import { type ServerWebSocket, serve } from "bun";
+import {
+  type CountryAlpha2,
+  countryIdFromAlpha2,
+  type TIpWhoisResponse,
+} from "../src/types";
 
 type ClientId = number;
 type WsData = {
   ipAddress: string;
   clientId: ClientId;
+  countryCode: CountryAlpha2;
   createdAt: Date;
 };
 
@@ -27,18 +33,22 @@ serve<WsData, never>({
     const ip = server.requestIP(req);
     if (!ip) return new Response("Upgrade failed", { status: 500 });
 
-    const response = await fetch(`http://ipwho.is/${ip}`);
-    const data = await response.json();
-    console.log(data);
+    try {
+      const response = await fetch(`http://ipwho.is/${ip.address}`);
+      const data = (await response.json()) as TIpWhoisResponse;
+      console.log(data);
+      const wsData: WsData = {
+        ipAddress: ip.address,
+        clientId: -1,
+        countryCode: data.country_code as CountryAlpha2,
+        createdAt: new Date(),
+      };
+      if (server.upgrade(req, { data: wsData })) return;
 
-    const wsData: WsData = {
-      ipAddress: ip.address,
-      clientId: -1,
-      createdAt: new Date(),
-    };
-    if (server.upgrade(req, { data: wsData })) return;
-
-    return new Response("Upgrade failed", { status: 500 });
+      return new Response("Upgrade failed", { status: 500 });
+    } catch (_) {
+      return new Response("Upgrade failed", { status: 500 });
+    }
   },
   websocket: {
     open: (ws) => {
@@ -46,10 +56,11 @@ serve<WsData, never>({
       clientsMap.set(clientIdCounter, ws);
       console.log(`[WS] Client connected.`, ws.data);
 
-      const castBuffer = Buffer.alloc(5);
+      const castBuffer = Buffer.alloc(6);
       const castView = new DataView(castBuffer.buffer);
       castView.setUint8(0, MSG_TYPE.CLIENT_CONNECTED);
       castView.setUint32(1, ws.data.clientId, true);
+      castView.setUint8(5, countryIdFromAlpha2(ws.data.countryCode) ?? 255);
 
       for (const [clientId, client] of clientsMap) {
         if (
@@ -61,6 +72,10 @@ serve<WsData, never>({
           // send already connected clients to this client
           if (ws.readyState === WebSocket.OPEN) {
             castView.setUint32(1, client.data.clientId, true);
+            castView.setUint8(
+              5,
+              countryIdFromAlpha2(client.data.countryCode) ?? 255,
+            );
             ws.send(castBuffer);
           }
         }

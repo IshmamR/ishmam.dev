@@ -102,8 +102,13 @@
 }
 
 @utility client_cursor_div {
-  @apply pointer-events-none absolute flex size-3 -translate-1/2 items-center justify-center rounded-full border-[2px] border-amber-50 bg-amber-400 text-base font-bold text-white;
+  @apply pointer-events-none absolute flex size-5 -translate-1/2 items-center justify-center;
   @apply transition-all duration-75 ease-out;
+  background-image: url("/assets/misc/cursor.svg");
+}
+
+@utility cursor_country_img {
+  @apply h-[16px] w-[20px] translate-2.5 object-cover;
 }
 
 .prose blockquote p::before,

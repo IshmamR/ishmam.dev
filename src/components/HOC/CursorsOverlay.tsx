@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
+import { alpha2FromCountryId } from "../../types";
 
 const MSG_TYPE = {
   CLIENT_CONNECTED: 0,
@@ -33,8 +34,11 @@ export default function CursorsOverlay() {
       const dataView = new DataView(ev.data, 0, ev.data.byteLength);
       const msgType = dataView.getUint8(0);
       const clientId = dataView.getUint32(1, true);
+      const countryCodeId = dataView.getUint8(5);
 
-      if (ev.data.byteLength === 5) {
+      const countryCode = alpha2FromCountryId(countryCodeId);
+
+      if (ev.data.byteLength === 6) {
         if (msgType === MSG_TYPE.CLIENT_CONNECTED) {
           // console.log("Client connected. Client Id:", clientId);
 
@@ -42,11 +46,23 @@ export default function CursorsOverlay() {
           cursorDiv.classList.add("client_cursor_div");
           cursorsOverlayRef.current.appendChild(cursorDiv);
           cursorsMap.current.set(clientId, cursorDiv);
+
+          // add an img tag to it
+          const countryImgTag = document.createElement("img");
+          countryImgTag.width = 64;
+          countryImgTag.height = 48;
+          countryImgTag.classList.add("cursor_country_img");
+          countryImgTag.src = countryCode
+            ? `https://cdn.ipwhois.io/flags/${countryCode.toLowerCase()}.svg`
+            : "/assets/companies/electrode.webp";
+          cursorDiv.appendChild(countryImgTag);
         } else if (msgType === MSG_TYPE.CLIENT_DISCONNECTED) {
           // console.log("Client disconnected. Client Id:", clientId);
 
           const cursorDiv = cursorsMap.current.get(clientId);
           if (!cursorDiv) return;
+          const imgTag = cursorDiv.querySelector("img.cursor_country_img");
+          if (imgTag) cursorDiv.removeChild(imgTag);
           cursorsOverlayRef.current.removeChild(cursorDiv);
           cursorsMap.current.delete(clientId);
         }
