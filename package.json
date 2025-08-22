@@ -22,6 +22,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "bun run fonts:cp; vite build",
+    "build:ws-server": "bun build --compile --minify --sourcemap --prod --bytecode ./server/websocket.ts --outfile portfolio-ws.app",
     "start": "vite start",
     "preview": "vite preview",
     "fonts:cp": "mkdir -p public/assets/files && cp node_modules/@fontsource-variable/*/files/*.woff2 public/assets/files/"

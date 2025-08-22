@@ -42,3 +42,5 @@ cypress/screenshots/
 cypress/videos/
 
 public/assets/files/*.woff2
+
+portfolio-ws.app
