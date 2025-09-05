@@ -40,6 +40,8 @@ export default function CursorsOverlay() {
 
       if (ev.data.byteLength === 6 && msgType === MSG_TYPE.CLIENT_CONNECTED) {
         // console.log("Client connected. Client Id:", clientId);
+        // console.log("Country id: ", countryCodeId);
+        // console.log("Country Code:", countryCode);
 
         const cursorDiv = document.createElement("div");
         cursorDiv.classList.add("client_cursor_div");
