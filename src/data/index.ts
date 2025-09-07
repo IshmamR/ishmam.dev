@@ -259,7 +259,7 @@ Problem jump domains — concept, hardware, UI — me bridge gap. Me make it wor
 - Connect front to back. Features flow, no hiccup.
 - Ship AI to prod. Models run, workflows smart.
 
-Me learn fast, ship faster. Me code, me study(sometimes). Balance both (not really), level up fast.`,
+Me learn fast, ship faster. Me balance code and study -> level up fast.`,
         skills: [
           { title: "Typescript", iconSlug: "ts" },
           { title: "Node.js", iconSlug: "nodejs" },

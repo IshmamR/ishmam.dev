@@ -18,7 +18,7 @@ export function Footer() {
           >
             ishmam
           </a>
-          . The source code is available on{" "}
+          . The source code is available upon{" "}
           <a
             className="link"
             href="https://github.com/IshmamR/ishmam.dev"

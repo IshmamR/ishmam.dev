@@ -40,10 +40,10 @@ function Home() {
       <AboutSection />
       <SeparatorPattern />
 
-      <TechStackSection />
+      <ExperienceSection />
       <SeparatorPattern />
 
-      <ExperienceSection />
+      <TechStackSection />
       <SeparatorPattern />
 
       <ProjectsSection />
